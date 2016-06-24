@@ -1,0 +1,37 @@
+body {
+  margin:0;
+  background-color: rgb(218, 201, 211);
+}
+/*
+font-family: 'Roboto Condensed', sans-serif;
+font-family: 'Playfair Display', serif;
+font-family: 'Roboto', sans-serif;
+*/
+
+/*Home Page*/
+.dallasSkyline {
+  max-width: 100%;
+  min-width: 100%;
+  position: absolute;
+}
+
+.homePageText {
+  font-family: 'Roboto Condensed', sans-serif;
+  text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 150px;
+  height: 400px;
+  background-color: rgba(255, 255, 255, 0.36);
+  color: white;
+  font-size: 4em;
+  position: absolute;
+  width: 80%;
+  font-weight: 400;
+}
+
+.homePageText2 {
+  font-family: 'Playfair Display';
+  font-size: .5em;
+  font-weight: 400;
+}
