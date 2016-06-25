@@ -7,6 +7,11 @@ angular.module('providerApp', ['ui.router'])
       templateUrl: "src/home/home.html",
       controller: "homeCtrl"
     })
+    .state('userHome', {
+      url:'/profile',
+      templateUrl: "src/userHome/userHome.html",
+      controller: "userHomeCtrl"
+    })
 
     $urlRouterProvider.otherwise("/home");
 })
