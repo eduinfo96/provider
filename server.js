@@ -2,16 +2,20 @@ const express = require('express');
 const {json} = require('body-parser');
 const session = require ('express-session');
 const mongoose = require('mongoose');
+const passport = require('passport');
+const FacebookStrategy = require('passport-facebook').Strategy;
 
 const sessionConfig = require('./server/config/sessionConfig')
 const masterRoutes = require('./server/masterRoutes');
 
 const app = express();
-const port = 9000;
+const port = 3000;
 
 app.use( json() );
 app.use(express.static(`${__dirname}/public`));
 app.use ( session (sessionConfig) );
+app.use (passport.initialize());
+app.use (passport.session());
 
 const mongoUri = "mongodb://localhost/provider";
 mongoose.connect(mongoUri);
