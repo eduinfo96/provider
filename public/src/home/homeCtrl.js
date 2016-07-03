@@ -1,7 +1,7 @@
 angular.module("providerApp")
 
-.controller("homeCtrl", function($scope, $state) {
+.controller("homeCtrl", function($scope, providerService) {
   $scope.loginFB = function () {
-        $state.go("http://localhost:3000/auth/facebook/auth");
+    providerService.loginFB().then( ()=> {console.log(response.data)});
   }
 })
