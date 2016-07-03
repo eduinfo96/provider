@@ -1,5 +1,5 @@
 const express = require('express');
-const {json} = require('body-parser');
+const bodyParser = require('body-parser');
 const session = require ('express-session');
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -12,7 +12,7 @@ const masterRoutes = require('./server/masterRoutes');
 const app = express();
 const port = 3000;
 
-app.use( json() );
+app.use( bodyParser.json() );
 app.use( express.static(`${__dirname}/public`));
 app.use( session (sessionConfig) );
 app.use( passport.initialize());
