@@ -19,28 +19,8 @@ app.use( passport.initialize());
 app.use( passport.session());
 
 passport.use( new FacebookStrategy(FacebookConfig, (token, refreshToken, profile, done) => {
-  return done( null, profile);
+  return done(null, profile);
 }))
-
-app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-    successRedirect: "/me"
-  , failureRedirect: "/"
-}), (req, res) => {
-  console.log(req.session);
-})
-
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-
-passport.deserializeUser((obj, done) => {
-  done(null, obj);
-});
-
-app.get('/me', (req, res) => {
-  res.send(req.user);
-})
 
 const mongoUri = "mongodb://localhost/provider";
 mongoose.connect(mongoUri);
