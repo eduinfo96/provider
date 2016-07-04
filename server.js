@@ -22,7 +22,7 @@ passport.use( new FacebookStrategy(FacebookConfig, (token, refreshToken, profile
   return done(null, profile);
 }))
 
-const mongoUri = "mongodb://localhost/provider";
+const mongoUri = require("./server/config/mlab").mongoUri;
 mongoose.connect(mongoUri);
 mongoose.connection.once('open', ()=> {console.log(`Connected with mongo db at ${mongoUri}`)})
 
