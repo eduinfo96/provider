@@ -6,7 +6,7 @@ const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
 
 const sessionConfig = require('./server/config/sessionConfig');
-const FacebookConfig = require('./server/config/FacebookConfig');
+const FacebookConfig = require('./server/config/facebookConfig');
 const masterRoutes = require('./server/masterRoutes');
 
 const app = express();
