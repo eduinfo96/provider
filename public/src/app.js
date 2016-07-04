@@ -18,5 +18,5 @@ angular.module('providerApp', ['ui.router'])
 
 
 .constant('ref', {
-  url: "http://localhost:3000"
+  url: "http://harrypotterbookclub.xyz"
 })
