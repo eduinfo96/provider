@@ -15,3 +15,8 @@ angular.module('providerApp', ['ui.router'])
 
     $urlRouterProvider.otherwise("/home");
 })
+
+
+.constant('ref', {
+  url: "http://localhost:3000"
+})

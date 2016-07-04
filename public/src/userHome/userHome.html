@@ -1,1 +1,48 @@
 <h1> userHome </h1>
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="profileSetup">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Welcome, let's setup your profile!</h3>
+      </div>
+      <div class="modal-body">
+        <h5>How are you primarily going to use provider?</h5>
+
+        <div class="radio">
+            <label>
+            <input type="radio" name="exampleRadios" id="exampleRadios1" ng-model="userType" value="user123" checked>
+            User- I'm looking for providers in my area.
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="exampleRadios" id="exampleRadios2" ng-model="userType" value="provider">
+            Provider- I want to be a provider for those in my area.
+          </label>
+        </div>
+
+
+          <fieldset class="form-group">
+          <label for="exampleTextarea">Tell us about yourself..</label>
+          <textarea ng-model="bio" autofocus=""class="form-control" id="exampleTextarea" rows="3"></textarea>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <label for="profileImage">Profile Image Url</label>
+            <input type="url" ng-model="imgUrl" class="form-control" id="exampleInputEmail1" placeholder="Insert Image Url">
+          </fieldset>
+
+          <fieldset class="form-group">
+            <label for="zipCode">Zip Code</label>
+            <input type="Number" ng-model="zip" class="form-control" id="exampleInputEmail1" placeholder="To better locate your available providers..">
+          </fieldset>
+
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="addNewUser()">Next</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

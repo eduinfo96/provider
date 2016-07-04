@@ -1,10 +1,11 @@
 angular.module('providerApp')
 
-.factory('providerService', function( $http ) {
+.factory('providerService', function( $http, ref ) {
   return {
-    loginFB: function() {
-      return $http.get('/auth/facebook');
+    FBinfo: function() {
+      return $http.get(`${ref.url}/FBuser`);
     }
+
 
 
   }
