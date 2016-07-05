@@ -13,7 +13,7 @@ angular.module("providerApp")
   }
 
   getFbData();
-  console.log(user);
+  // console.log(user);
 
   $scope.addNewUser = () => {
     const newUser =   {
