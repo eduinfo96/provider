@@ -6,9 +6,9 @@ module.exports = {
       const userObject= {
         facebookID: req.user.id
       , facebookName: req.user.displayName
-      , email: req.user.emails[0].value
+      // , email: req.user.emails[0].value
       , username: req.user.username
-      , picture: req.user.photos[0].value
+      // , picture: req.user.photos[0].value
       , firstName: req.user.first_name
       , lastName: req.user.last_name
       , gender: req.user.gender
