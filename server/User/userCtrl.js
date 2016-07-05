@@ -8,9 +8,9 @@ module.exports = {
       , facebookName: req.user.displayName
       , email: req.user.email
       , username: req.user.username
-      , picture: req.user.picture
-      , firstName: req.user.firstName
-      , lastName: req.user.lastName
+      , picture: req.user.photos
+      , firstName: req.user.name.familyName
+      , lastName: req.user.name.givenName
       , gender: req.user.gender
       , birthday: req.user.birthday
       , location: req.user.location
