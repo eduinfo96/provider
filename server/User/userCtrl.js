@@ -6,8 +6,9 @@ module.exports = {
       const userObject= {
         id: req.user.id
       , facebookName: req.user.displayName
+      ,
        }
-      res.send(userObject);
+      res.send(userObject, req._id);
     },
       //GET REQUEST
   getUsers (req, res, next) {
