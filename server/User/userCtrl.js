@@ -9,13 +9,14 @@ module.exports = {
       // , email: req.user.emails[0].value
       , username: req.user.username
       // , picture: req.user.photos[0].value
-      , firstName: req.user.first_name
-      , lastName: req.user.last_name
+      , firstName: req.user.firstName
+      , lastName: req.user.lastName
       , gender: req.user.gender
       , birthday: req.user.birthday
       , location: req.user.location
        }
        console.log(req.user);
+       console.log(req.user.picture);
       res.send(userObject);
     },
       //GET REQUEST
