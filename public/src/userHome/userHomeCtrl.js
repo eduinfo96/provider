@@ -4,17 +4,6 @@ angular.module("providerApp")
 
   $('#profileSetup').modal('show')
 
-  // let fbData = {}
-  // function getFbData(){
-  //   providerService.FBinfo().then( (response)=> {
-  //     fbData = response.data;
-  //     console.log(fbData);
-  //   })
-  // }
-  // getFbData();
-
-
-
   function checkIfUser() {
     providerService.FBinfo().then( (response) => {
       var fb = response.data;
@@ -27,6 +16,21 @@ angular.module("providerApp")
             console.log("user exsist", users[i]._id);
             return users[i]._id;
           } //IF USER DOESN'T EXSIST, CREATES A NEW USER WITH THE AVAILABLE DATA
+          else if (!users) {
+            const newUser =   {
+                  facebookName: fb.facebookName
+                , facebookID: fb.id
+                , firstName: fb.firstName
+                , lastName: fb.lastName
+                , photos: fb.picture
+                , email: fb.email
+                , gender: fb.gender
+                , birthday: fb.birthday
+                , location: fb.location
+              }
+              console.log("user created!");
+              return userService.addUser(newUser);
+          }
           else {
             const newUser =   {
                   facebookName: fb.facebookName
