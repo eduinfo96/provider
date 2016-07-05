@@ -6,9 +6,9 @@ module.exports = {
       const userObject= {
         facebookID: req.user.id
       , facebookName: req.user.displayName
-      // , email: req.user.emails[0].value
+      , email: req.user.email
       , username: req.user.username
-      // , picture: req.user.photos[0].value
+      , picture: req.user.picture
       , firstName: req.user.firstName
       , lastName: req.user.lastName
       , gender: req.user.gender
@@ -16,8 +16,7 @@ module.exports = {
       , location: req.user.location
        }
        console.log(req.user);
-       console.log(req.user.picture);
-      res.send(userObject);
+      res.json(userObject);
     },
       //GET REQUEST
   getUsers (req, res, next) {
