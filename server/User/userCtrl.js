@@ -7,6 +7,7 @@ module.exports = {
         facebookID: req.user.id
       , facebookName: req.user.displayName
       , email: req.user.email
+      , username: req.user.username
       , picture: req.user.photos
       , firstName: req.user.name.familyName
       , lastName: req.user.name.givenName
@@ -18,6 +19,7 @@ module.exports = {
       res.json(userObject);
     },
       //GET REQUEST
+
   getUsers (req, res, next) {
     Users.find( (req.query), (err,users) => {
       if (err) {return res.send(err); }
