@@ -9,8 +9,8 @@ angular.module("providerApp")
     providerService.FBinfo().then( (response) => {
       var fb = response.data;
       console.log(fb);
-      userService.getUsers().then( (users) => {
-        console.log(users)
+      userService.getUsers().then( (res) => {
+        var users = res.data;
         for (let i=0; i < users.length; i++) {
           //CHECKS TO SEE IF A USER EXSIST, RETURNS PARAM.ID
           if (users[i].facebookID == fb.facebookID) {

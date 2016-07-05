@@ -15,7 +15,6 @@ module.exports = {
       , birthday: req.user.birthday
       , location: req.user.location
        }
-      console.log(req.user)
       res.json(userObject);
     },
       //GET REQUEST
