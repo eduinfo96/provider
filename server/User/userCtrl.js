@@ -4,7 +4,7 @@ module.exports = {
 
     getUserFacebook (req, res, next) {
       const userObject= {
-      , facebookID: req.user.id
+        facebookID: req.user.id
       , facebookName: req.user.displayName
       , email: req.user.email
       // , picture: req.user.picture
