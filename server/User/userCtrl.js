@@ -9,8 +9,8 @@ module.exports = {
       , email: req.user.email
       , username: req.user.username
       , picture: req.user.photos
-      , firstName: req.user.name.familyName
-      , lastName: req.user.name.givenName
+      , firstName: req.user.name.givenName
+      , lastName: req.user.name.familyName
       , gender: req.user.gender
       , birthday: req.user.birthday
       , location: req.user.location
