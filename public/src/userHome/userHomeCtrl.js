@@ -25,7 +25,7 @@ angular.module("providerApp")
             console.log("user exsist", users[i]._id);
             return users[i]._id;
           } //IF USER DOESN'T EXSIST, CREATES A NEW USER WITH THE AVAILABLE DATA
-          else if {
+          else {
             const newUser =   {
                   facebookName: fbData.facebookName
                 , facebookID: fbData.id
