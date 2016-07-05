@@ -15,8 +15,8 @@ angular.module("providerApp")
           //CHECKS TO SEE IF A USER EXSIST, RETURNS PARAM.ID
           if (users[i].facebookID == fb.facebookID) {
             $scope.user = users[i];
-            console.log("user exsist", users[i]._id);
-            return users[i]._id;
+            console.log("user exsist", users[i]);
+            return users[i];
           } //IF USER DOESN'T EXSIST, CREATES A NEW USER WITH THE AVAILABLE DATA
           else {
             const newUser =   {
