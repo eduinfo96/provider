@@ -16,8 +16,9 @@ angular.module("providerApp")
             $scope.user = users[i];
             console.log("user exsist", users[i]);
             return users[i];
-          }  //IF USER DOESN'T EXSIST, CREATES A NEW USER WITH THE AVAILABLE DATA
+          }
         } //end of loop
+        //IF USER DOESN'T EXSIST, CREATES A NEW USER WITH THE AVAILABLE DATA
         const newUser =   {
               facebookName: fb.facebookName
             , facebookID: fb.facebookID
@@ -33,7 +34,6 @@ angular.module("providerApp")
           return userService.addUser(newUser);
       })
     })
-
   }
 
 

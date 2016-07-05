@@ -3,6 +3,7 @@ const Users = require("./Users")
 module.exports = {
 
     getUserFacebook (req, res, next) {
+      req.session = req.user.id
       const userObject= {
         facebookID: req.user.id
       , facebookName: req.user.displayName
@@ -15,7 +16,6 @@ module.exports = {
       , birthday: req.user.birthday
       , location: req.user.location
        }
-      console.log(req.user);
       res.json(userObject);
     },
       //GET REQUEST
