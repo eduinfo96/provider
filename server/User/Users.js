@@ -2,16 +2,18 @@ const mongoose = require('mongoose');
 
 const Users = mongoose.Schema(
   {
-    name: {type: String}
-  , userType: {type: String}
-  , bio: {type: String}
-  , imageUrl: {type: String}
+    userType: {type: String}
   , facebookID: {type: Number, required:true}
   , facebookName: {type: String}
-  , facebookFirstName: {type: String}
-  , facebookLastName: {type: String}
+  , photos: {type: Object}
+  , location: {type: String}
+  , birthday: {type: String}
+  , firstName: {type: String}
+  , gender: {type: String}
+  , lastName: {type: String}
   , zipCode: {type: Number}
   , email: {type: String}
+  , bio: {type: String}
   , servicesOffered: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: `ServicesOffered`

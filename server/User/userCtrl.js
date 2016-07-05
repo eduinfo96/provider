@@ -7,7 +7,6 @@ module.exports = {
         facebookID: req.user.id
       , facebookName: req.user.displayName
       , email: req.user.email
-      , username: req.user.username
       , picture: req.user.photos
       , firstName: req.user.name.familyName
       , lastName: req.user.name.givenName
@@ -15,7 +14,7 @@ module.exports = {
       , birthday: req.user.birthday
       , location: req.user.location
        }
-       console.log(req.user);
+      // console.log(req.user) super useful for finding new items on the user
       res.json(userObject);
     },
       //GET REQUEST
