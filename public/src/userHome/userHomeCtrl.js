@@ -40,7 +40,7 @@ angular.module("providerApp")
               return userService.addUser(newUser);
           }
         } //end of loop
-      }
+      })
     })
 
   }
