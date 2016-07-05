@@ -14,7 +14,7 @@ module.exports = {
       , gender: req.user.gender
       , birthday: req.user.birthday
       , location: req.user.location
-       }
+    }
       // console.log(req.user) super useful for finding new items on the user
       res.json(userObject);
     },

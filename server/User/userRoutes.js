@@ -8,7 +8,8 @@ module.exports = app => {
       successRedirect: "/#/profile"
     , failureRedirect: "/#/home"
   }), (req, res) => {
-    console.log(req.session);
+    console.log(res)
+    console.log(req);
   })
 
   passport.serializeUser((user, done) => {
