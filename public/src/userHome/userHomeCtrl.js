@@ -16,7 +16,7 @@ angular.module("providerApp")
 
 
   function checkIfUser() {
-    getFbData().then( (fbInfo) => {
+    getFbData().then( (fbData) => {
       userService.getUsers().then( (users) => {
         for (let i=0; i < users.length; i++) {
           //CHECKS TO SEE IF A USER EXSIST, RETURNS PARAM.ID
