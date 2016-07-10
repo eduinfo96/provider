@@ -1,5 +1,5 @@
 angular.module("providerApp")
-.factory("userService", function ($http, ref) {
+.factory("userService", function ($http, ref, $cookies) {
   return {
     getUsers: function () {
       return $http.get(`${ref.url}/api/users`);
@@ -12,7 +12,8 @@ angular.module("providerApp")
     },
     deleteUser: function(userID) {
       return $http.delete(`${ref.url}/api/users/${userID}`);
-    }
+    },
+
 
   }
 })

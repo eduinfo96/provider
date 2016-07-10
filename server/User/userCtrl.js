@@ -31,6 +31,17 @@ module.exports = {
       return res.json(user);
     })
   },
+  //Trey's code, testing it out
+
+  getCurrentUser(req, res) {
+    Users.findById(req.user._id)
+      .exec((err, currentUser) => {
+        if (err) {
+          return res.status(500).json(err);
+        }
+        return res.status(200).json(currentUser)
+      });
+  },
 
 
 
@@ -60,6 +71,18 @@ module.exports = {
       if (err) { return res.send(err); }
       else {return res.json(response); }
     })
+  },
+
+  //logout
+
+    logOut( req, res, next ) {
+    req.logout();
+    res.redirect('/');
+  },
+    isLoggedIn(req, res, next) {
+      if (req.isAuthenticated())
+          return next();
+      res.Status(401);
   },
 
 

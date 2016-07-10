@@ -1,7 +1,103 @@
+<user-nav></user-nav>
 <h1> userHome </h1>
-<img ng-src="{{user.photos[0].value}}" alt="" />
-{{user.firstName}}
+<br>
 
+
+<div class="container">
+  <!--This is the Profile Header Container-->
+  <div class="profileRow row" id="firstProfileRow">
+
+    <div class="col-sm-5" id="fr_fc_profileText">
+      <h2>{{currentUser.firstName}}</h2>
+      <h2><small>Welcome back!</small></h2>
+        <p>
+          <b>New updates this week include:</b><br> Boom shackalack nizzle rizzle nizzle gangsta posuere shit. Aliquam the bizzle viverra lectus. Crizzle izzle phat et my shizz sodales euismizzle. Phat shizzlin dizzle, mauris vitae doggy cool, nulla dang dizzle sheezy.
+        </p>
+    </div>
+
+    <div class="col-sm-4" id="fr_sc_profilePhoto">
+      <img ng-src="{{user.photos[0].value}}" id="fr_sc_facebookImg" />
+    </div>
+
+    <div class="col-sm-3" id="fr_tc_navBar">
+      <p>
+        This is where the finished nav bar will go
+      </p>
+    </div>
+
+  </div>
+
+
+<!--This is the Second Row -->
+  <div class="profileRow row" id="secondProfileRow">
+
+    <div class="col-sm-5" id="sr_fc_searchANDmap">
+          <!--search-->
+      <div class="row">
+        <div class="col-sm-12"id="sr_fc_search">
+            <input id="sr_fc_search_input" type="text" ng-model="search" placeholder=" Address and City"/>
+
+            <button class="btn sr_fc_search_buttons" type="button" ng-click="geoCode()" ng-disabled="search.length == 0" title="Set Location"><i class="fa fa-search" aria-hidden="true"></i></button>
+            <button class="btn sr_fc_search_buttons" type="button" ng-click="gotoCurrentLocation()" ng-title="Find Current Location"><i class="fa fa-location-arrow" aria-hidden="true"></i>
+            </button>
+        </div>
+      </div>
+
+          <!-- map -->
+      <div class="row">
+          <div class="col-sm-12">
+            <user-map style="height:350px;width:350px;margin:0"
+                center="loc"
+                markers="location"
+                id="sr_map"
+                >
+            </user-map>
+          </div>
+      </div>
+
+
+    </div>
+
+    <div class="col-sm-2" id="sr_sc_locations">
+      <!-- current location and recent locations -->
+      <div class="row">
+
+        <div class="col-sm-12 sr_sc_locations_box">
+          <i class="fa fa-map-marker sr_sc_locations_icons text-center fa-2x block"></i>
+          <h5 class="text-center">Current Address:</h5>
+          <h6>
+            {{address}}
+          </h6>
+        </div>
+
+        <div class="col-sm-12 sr_sc_locations_box">
+          <i class="fa fa-map-o sr_sc_locations_icons fa-2x block"></i>
+          <h5 class="text-center">Recent Locations:</h5>
+            <div class="btn btn-block sr_sc_locations_button"
+                ng-repeat="location in locations"
+                ng-click="gotoLocation(location.lat, location.lon)"
+                ng-show="location.name">
+                <i class="fa fa-map-pin"  aria-hidden="true"></i>
+                <b>{{location.name}}</b><br>
+                {{location.formattedAddress}}
+                <div class="btn btn-success  sr_sc_locations_button_saveLocation">Save this Location</div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 sr_sc_locations_box ">
+          <i class="fa fa-map-signs sr_sc_locations_icons fa-2x block "></i>
+          <h5 class="text-center">Saved Locations:</h5>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+
+    </div>
+  </div>
+
+</div> <!--End of the container-->
 
 <!-- <div class="modal fade" tabindex="-1" role="dialog" id="profileSetup">
   <div class="modal-dialog">

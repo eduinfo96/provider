@@ -22,14 +22,18 @@ module.exports = app => {
   //the start of the actually getting the user data// now we can create the user Schema
   app.get('/FBuser', userCtrl.getUserFacebook);
 
-  app.get('/api/users', userCtrl.getUsers);
-  app.get('/api/users/:id', userCtrl.getThisUser);
+  app.get('/api/users',userCtrl.isLoggedIn, userCtrl.getUsers);
+  app.get('/api/getCurrentUser',userCtrl.isLoggedIn, userCtrl.getCurrentUser);
 
-  app.post('/api/users', userCtrl.addUser);
+  app.get('/api/users/:id',userCtrl.isLoggedIn, userCtrl.getThisUser);
 
-  app.put('/api/users/:id', userCtrl.editUser);
+  app.post('/api/users',userCtrl.isLoggedIn, userCtrl.addUser);
 
-  app.delete('/api/users/:id', userCtrl.deleteUser);
+  app.put('/api/users/:id',userCtrl.isLoggedIn, userCtrl.editUser);
+
+  app.delete('/api/users/:id',userCtrl.isLoggedIn, userCtrl.deleteUser);
+
+  app.get('/logout', userCtrl.logOut);
 
 
 }
