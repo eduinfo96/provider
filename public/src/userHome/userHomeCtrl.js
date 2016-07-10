@@ -1,8 +1,7 @@
 angular.module("providerApp")
 
 .controller("userHomeCtrl", function($scope, appService, userService, $cookies, $location){
-
-  $('#profileSetup').modal('show')
+  $('#profileSetup').modal('hide')
 
 
   function checkIfUser() {
@@ -13,9 +12,9 @@ angular.module("providerApp")
         for (let i=0; i < users.length; i++) {
           //CHECKS TO SEE IF A USER EXSIST, RETURNS PARAM.ID
           if (users[i].facebookID == fb.facebookID) {
-            $cookies.putObject('currentUser', users[i]);
-            $scope.currentUser = $cookies.getObject('currentUser');
-            $scope.user = users[i];
+            // $cookies.putObject('currentUser', users[i]);
+            // $scope.currentUser = $cookies.getObject('currentUser');
+            $scope.currentUser = users[i];
             console.log("user exsist", $scope.currentUser);
             return ;
           }
@@ -34,29 +33,18 @@ angular.module("providerApp")
           }
           console.log("user created!");
           return userService.addUser(newUser).then( (user) => {
-            $cookies.putObject('currentUser', user.data);
-            $scope.currentUser = $cookies.getObject('currentUser');
-            console.log("new user exsist", $scope.currentUser);
+            // $cookies.putObject('currentUser', user.data);
+            // $scope.currentUser = $cookies.getObject('currentUser');
+            $scope.currentUser = user;
+            $scope.user = user;
+            console.log("new user exist", $scope.currentUser);
             return ;
           });
       })
     })
   }
 
-
   checkIfUser();
-
-
-
-  //currently not working
-  $scope.logout = () => {
-    $scope.currentUser={};
-    $cookies.remove('currentUser');
-    $location.path('/logout')
-  };
-
-
-// // need to add this to the user and have manual input
 
 
 
@@ -136,16 +124,39 @@ $scope.geoCode = function () {
     }
 };
 
-// some points of interest to show on the map
-// to be user as markers, objects should have "lat", "lon", and "name" properties
 $scope.locations = [
   {}
 ];
 
-  // needs to go in edit user
-  // userType: $scope.userType
-  //  , bio: $scope.bio
-  // , zipCode: $scope.zip
+$scope.saveLocation = (newLocation) => {
+  userService.addLocation($scope.currentUser._id, newLocation).then( (user) => {
+    $scope.currentUser = user.data
+  })
+}
+
+setTimeout(function(){
+  if (!$scope.currentUser.userType) {
+    $('#profileSetup').modal('show')
+  }
+},500)
+
+$scope.updateUser= () => {
+  const updatedUser= {
+    userType: $scope.userType
+    , bio: $scope.bio
+    , email: $scope.email
+    , cellNumber: $scope.phoneNumber
+  }
+  userService.editUser(updatedUser, $scope.currentUser._id).then( (user) => {
+    $scope.currentUser = user.data
+    $('#profileSetup').modal('hide')
+    if ($scope.currentUser.userType === "provider") {
+      $location.path('/provider')
+    }
+  } )
+}
+
+
 
 
 

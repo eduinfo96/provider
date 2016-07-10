@@ -54,7 +54,7 @@ return {
             var options =
             {
                 center: new google.maps.LatLng(40, -73),
-                zoom: 10,
+                zoom: 16,
                 mapTypeId: "roadmap"
             };
             if (scope.center) options.center = getLocation(scope.center);

@@ -13,7 +13,8 @@ angular.module("providerApp")
     deleteUser: function(userID) {
       return $http.delete(`${ref.url}/api/users/${userID}`);
     },
-
-
+    addLocation: function(userID, newLocation) {
+      return $http.put(`${ref.url}/api/users/${userID}/locations`, newLocation)
+    },
   }
 })

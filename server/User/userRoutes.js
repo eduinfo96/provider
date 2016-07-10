@@ -29,6 +29,8 @@ module.exports = app => {
 
   app.post('/api/users',userCtrl.isLoggedIn, userCtrl.addUser);
 
+
+  app.put('/api/users/:id/locations',userCtrl.isLoggedIn, userCtrl.addLocation);
   app.put('/api/users/:id',userCtrl.isLoggedIn, userCtrl.editUser);
 
   app.delete('/api/users/:id',userCtrl.isLoggedIn, userCtrl.deleteUser);

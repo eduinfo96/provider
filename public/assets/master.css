@@ -11,7 +11,7 @@ font-family: 'Roboto', sans-serif;
 #backgroundSVG {
   position: absolute;
   width: 100%;
-  height: 1000px;
+  height: 2000px;
   z-index: -50;
 }
 
@@ -42,23 +42,39 @@ font-family: 'Roboto', sans-serif;
   font-size: .5em;
   font-weight: 400;
 }
+/*Nav Bar*/
+.navBarButtons {
+  background-color: rgba(255, 255, 255, 0.35);
+  text-align: left;
+  margin-left:0;
+  margin-right: 0;
+  border-radius: 0;
+  margin-bottom: 1px;
+  color: white;
+}
 
 /*User Home*/
 
 /*CLASS OF ALL ROWS*/
+
+.col {
+  padding-left: 10px;
+  padding-right: 10px;
+}
 .profileRow {
   /*width:830px;
   margin-left: auto;
   margin-right: auto;*/
-  width: 80%;
+  width: 830px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 /*ALL THE ROWS ON THE PROFILE VIEW*/
 
 #firstProfileRow {
+  margin-top: 30px;
   height: 275px;
 }
 
@@ -81,11 +97,13 @@ font-family: 'Roboto', sans-serif;
 
 #fr_sc_facebookImg {
   height:275px;
+  width: 275px;
 }
 
 #fr_tc_navBar {
-  background-color: rgba(255, 255, 255, .3);
+  background-color: rgba(255, 255, 255, .1);
   height: inherit;
+  padding: 0;
 }
 
 
@@ -96,6 +114,7 @@ font-family: 'Roboto', sans-serif;
 #sr_fc_searchANDmap {
   padding: 0;
   background-color: rgba(255, 255, 255, 0);
+  box-shadow:  22px 0px 124px -9px rgba(0,0,0,0.36);;
 }
 
 #sr_fc_search {
@@ -104,14 +123,14 @@ font-family: 'Roboto', sans-serif;
 }
 
 #sr_fc_search_input {
-  margin-left: 30px;
-  width:70%;
+  /*margin-left: 30px;*/
+  width:74%;
   height: 34px;
   border: none;
+  border-radius: 5px;
 }
 
 .sr_fc_search_buttons {
-  float: right;
   margin-left: 1px;
 }
 
@@ -122,20 +141,26 @@ font-family: 'Roboto', sans-serif;
 /*SECOND ROW CONTENTS*/ /*SECOND COLUMN*/
 
 #sr_sc_locations{
-  background-color: rgba(255, 255, 255, 0.30);
-  margin-left: 4px;
+  margin-left:;
   height: inherit;
+  color: white;
 }
 
 .sr_sc_locations_box {
-  border:grey solid 2px;
-  margin-top: -2px;
   padding: 1px;
+  background-color: rgba(255, 255, 255, 0.30);
+  margin-bottom: 3px;
+  height: 150px;
+  overflow-y: scroll;
+}
 
+#sr_sc_locations_box_current {
+  height: 100px;
 }
 
 
 .sr_sc_locations_icons {
+  color: white;
   text-align: center;
   margin-top: 4px;
 }
@@ -159,4 +184,9 @@ font-family: 'Roboto', sans-serif;
   font-size: 9px;
   padding: 1px;
   margin-right: 1px;
+}
+
+/*SECOND ROW CONTENTS*/ /*THIRD COLUMN*/
+#sr_sc_ServicesAvail {
+  height: inherit;
 }

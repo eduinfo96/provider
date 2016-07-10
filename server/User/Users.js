@@ -11,7 +11,6 @@ const Users = mongoose.Schema(
   , firstName: {type: String}
   , gender: {type: String}
   , lastName: {type: String}
-  , zipCode: {type: Number}
   , email: {type: String}
   , bio: {type: String}
   , servicesOffered: [{
@@ -22,6 +21,10 @@ const Users = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: `Reviews`
    }]
+  , isAdmin: {type: Boolean, default: false}
+  , cellNumber: {type: Number}
+  , savedLocations: []
+  , isActive: {type: Boolean, default: false}
 }
 )
 

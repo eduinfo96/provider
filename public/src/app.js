@@ -12,6 +12,11 @@ angular.module('providerApp', ['ui.router', 'ngCookies'])
       templateUrl: "src/userHome/userHome.html",
       controller: "userHomeCtrl",
     })
+    .state('providerHome', {
+      url:'/provider',
+      templateUrl: "src/providerHome/providerHome.html",
+      controller: "providerHomeCtrl"
+    })
 
     $urlRouterProvider.otherwise("/home");
 })

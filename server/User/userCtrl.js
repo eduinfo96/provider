@@ -31,7 +31,7 @@ module.exports = {
       return res.json(user);
     })
   },
-  //Trey's code, testing it out
+
 
   getCurrentUser(req, res) {
     Users.findById(req.user._id)
@@ -49,6 +49,13 @@ module.exports = {
   addUser (req, res, next) {
     new Users(req.body).save( (err, user) => {
       if (err) {return res.send(err); }
+      return res.json(user);
+    })
+  },
+  addLocation (req, res, next) {
+    if (!req.params.id) {return res.status(400).send("Not in User")};
+    Users.findByIdAndUpdate(req.params.id, {$push: {savedLocations: req.body}}, {safe: true, upsert:true}, (err, user) => {
+      if (err) { return res.send(err); }
       return res.json(user);
     })
   },
