@@ -15,7 +15,7 @@ const Users = mongoose.Schema(
   , bio: {type: String}
   , servicesOffered: [{
       type: mongoose.Schema.Types.ObjectId,
-      ref: `ServicesOffered`
+      ref: `Services`
    }]
   , reviews: [{
       type: mongoose.Schema.Types.ObjectId,
