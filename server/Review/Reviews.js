@@ -4,9 +4,9 @@ const Reviews = mongoose.Schema(
   {
     serviceType: {type: String}
   , skillLevel: {type: Number}
-  , description: {type: String}
-  , flatRate: {type: Object}
-  , hrlyRate: {type: Object}
+  , comment: {type: String}
+  , cost: {type: Object}
+  , postedOn: {type: String}
   , forUser: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: `Users`
@@ -19,7 +19,6 @@ const Reviews = mongoose.Schema(
        type: mongoose.Schema.Types.ObjectId,
        ref: `Services`
     }]
-  , travelDistance: {type: Number}
 }
 )
 

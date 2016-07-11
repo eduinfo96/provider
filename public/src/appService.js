@@ -5,11 +5,9 @@ angular.module('providerApp')
     FBinfo: function() {
       return $http.get(`${ref.url}/FBuser`);
     },
-    getCurrentUser: function() {
-      return $http.get(`${ref.url}/api/getCurrentUser`).then( (user) => {
-        $cookies.putObject('currentUser', user.data);
-      })
-    },
+    getThisUser(userID) {
+      return $http.get(`${ref.url}/api/users/${userID}`);
+    }
 
 
 

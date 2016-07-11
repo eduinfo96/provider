@@ -2,22 +2,33 @@ const Reviews = require("./Reviews")
 
 module.exports = {
   getReviews (req, res, next) {
-    Reviews.find( (req.query), (err,reviews) => {
-      if (err) {return res.send(err); }
-      return res.json(reviews);
+    Reviews.find( (req.query) )
+      .populate('forUser')
+      .populate('byUser')
+      .populat('service')
+      .exec( (err,reviews) => {
+        if (err) {return res.status(500).json(err); }
+        return res.status(200).json(reviews);
       })
     },
   getThisReview (req, res, next) {
-      Reviews.findById( req.params.id, (err, review) => {
-      if (err) { return res.send(err); }
-      return res.json(review);
-    })
+    Reviews.findById(req.params.id)
+      .populate('forUser')
+      .populate('byUser')
+      .populat('service')
+      .exec( (err,reviews) => {
+        if (err) {return res.status(500).json(err); }
+        return res.status(200).json(reviews);
+      })
   },
 
   //POST REQUEST
   addReview (req, res, next) {
     new Reviews(req.body).save( (err, review) => {
-      if (err) {return res.send(err); }
+      if (err) {return res.send(err)};
+      Users.findByIdAndUpdate(req.body.user, {$push: {reviews: review._id}}, {safe: true, upsert:true, new:true}, (err, user) => {
+        if (err) { return res.send(err); }
+      })
       return res.json(review);
     })
   },

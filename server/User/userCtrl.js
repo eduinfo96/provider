@@ -15,10 +15,17 @@ module.exports = {
       , birthday: req.user.birthday
       , location: req.user.location
        }
-      Users.findOne({facebookID: userObject.facebookID}, function (err, user){
-        if(!user) {return res.json(userObject)};
-          req.session.user = user;
-          return res.json(user);
+      // Users.findOne({facebookID: userObject.facebookID}, function (err, user){
+      //   if(!user) {return res.json(userObject)};
+      //     req.session.user = user;
+      //     return res.json(user);
+      // })
+      Users.findOne({facebookID: userObject.facebookID})
+      .populate('servicesOffered')
+      .populate('reviews')
+      .exec( (err, user) => {
+        if (!user) {return res.json(userObject)};
+        return res.status(200).json(user);
       })
     },
       //GET REQUEST
@@ -30,23 +37,14 @@ module.exports = {
       })
     },
   getThisUser (req, res, next) {
-      Users.findById( req.params.id, (err, user) => {
-      if (err) { return res.send(err); }
-      return res.json(user);
-    })
+      Users.findById( req.params.id )
+      .populate('reviews')
+      .populate('servicesOffered')
+      .exec( (err, user) => {
+        if (err) {return res.status(500).json(err); }
+        return res.status(200).json(user);
+      })
   },
-
-
-  getCurrentUser(req, res) {
-    Users.findById(req.user._id)
-      .exec((err, currentUser) => {
-        if (err) {
-          return res.status(500).json(err);
-        }
-        return res.status(200).json(currentUser)
-      });
-  },
-
 
 
   //POST REQUEST
@@ -64,8 +62,6 @@ module.exports = {
       return res.json(user);
     })
   },
-
-
 
   //PUT REQUEST
   editUser (req, res, next) {

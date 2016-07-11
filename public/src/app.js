@@ -22,17 +22,6 @@ angular.module('providerApp', ['ui.router', 'ngCookies'])
 })
 
 
-.directive('userLocation', function(){
-  return {
-    templateUrl: 'src/directives/userLocation/userLocation.html'
-    , controller: 'userLocationCtrl'
-    , restrict: 'E'
-    , scope: {
-      userLocationData: '='
-    }
-  }
-})
-
 .constant('ref', {
   // url: "http://harrypotterbookclub.xyz"  unblock when you want to host again
   url: "http://localhost:3000"

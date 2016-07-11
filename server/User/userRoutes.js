@@ -23,7 +23,6 @@ module.exports = app => {
   app.get('/FBuser', userCtrl.isLoggedIn,userCtrl.getUserFacebook);
 
   app.get('/api/users',userCtrl.isLoggedIn, userCtrl.getUsers);
-  app.get('/api/getCurrentUser',userCtrl.isLoggedIn, userCtrl.getCurrentUser);
 
   app.get('/api/users/:id',userCtrl.isLoggedIn, userCtrl.getThisUser);
 
