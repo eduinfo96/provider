@@ -1,46 +1,37 @@
 angular.module("providerApp")
 
-.controller("userHomeCtrl", function($scope, appService, userService, $cookies, $location){
+.controller("userHomeCtrl", function($scope, $rootScope, appService, userService, $cookies, $location){
   $('#profileSetup').modal('hide')
 
 
   function checkIfUser() {
     appService.FBinfo().then( (response) => {
-      var fb = response.data;
-      userService.getUsers().then( (res) => {
-        var users = res.data;
-        for (let i=0; i < users.length; i++) {
-          //CHECKS TO SEE IF A USER EXSIST, RETURNS PARAM.ID
-          if (users[i].facebookID == fb.facebookID) {
-            // $cookies.putObject('currentUser', users[i]);
-            // $scope.currentUser = $cookies.getObject('currentUser');
-            $scope.currentUser = users[i];
-            console.log("user exsist", $scope.currentUser);
-            return ;
-          }
-        } //end of loop
-        //IF USER DOESN'T EXSIST, CREATES A NEW USER WITH THE AVAILABLE DATA
-        const newUser =   {
-              facebookName: fb.facebookName
-            , facebookID: fb.facebookID
-            , firstName: fb.firstName
-            , lastName: fb.lastName
-            , photos: fb.picture
-            , email: fb.email
-            , gender: fb.gender
-            , birthday: fb.birthday
-            , location: fb.location
-          }
-          console.log("user created!");
-          return userService.addUser(newUser).then( (user) => {
-            // $cookies.putObject('currentUser', user.data);
-            // $scope.currentUser = $cookies.getObject('currentUser');
-            $scope.currentUser = user;
-            $scope.user = user;
-            console.log("new user exist", $scope.currentUser);
-            return ;
-          });
-      })
+      if (!response.data._id) {
+        var fb= response.data;
+          const newUser =   {
+                facebookName: fb.facebookName
+              , facebookID: fb.facebookID
+              , firstName: fb.firstName
+              , lastName: fb.lastName
+              , photos: fb.picture
+              , email: fb.email
+              , gender: fb.gender
+              , birthday: fb.birthday
+              , location: fb.location
+            }
+            console.log("user created!");
+            return userService.addUser(newUser).then( (user) => {
+              $rootScope.currentUser =user;
+              $scope.currentUser = user;
+              $scope.user = user;
+              console.log("new user exist", $scope.currentUser);
+              return ;
+            });
+      }
+      $rootScope.currentUser = response.data;
+      $scope.currentUser = response.data;
+      $scope.user = response.data;
+      console.log("userExist", $scope.currentUser);
     })
   }
 
@@ -130,6 +121,7 @@ $scope.locations = [
 
 $scope.saveLocation = (newLocation) => {
   userService.addLocation($scope.currentUser._id, newLocation).then( (user) => {
+    $rootScope.currentUser = user.data;
     $scope.currentUser = user.data
   })
 }
@@ -148,8 +140,9 @@ $scope.updateUser= () => {
     , cellNumber: $scope.phoneNumber
   }
   userService.editUser(updatedUser, $scope.currentUser._id).then( (user) => {
-    $scope.currentUser = user.data
-    $('#profileSetup').modal('hide')
+    $rootScope.currentUser = user.data ;
+    $scope.currentUser = user.data ;
+    $('#profileSetup').modal('hide');
     if ($scope.currentUser.userType === "provider") {
       $location.path('/provider')
     }

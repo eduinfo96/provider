@@ -15,7 +15,11 @@ module.exports = {
       , birthday: req.user.birthday
       , location: req.user.location
        }
-      res.json(userObject);
+      Users.findOne({facebookID: userObject.facebookID}, function (err, user){
+        if(!user) {return res.json(userObject)};
+          req.session.user = user;
+          return res.json(user);
+      })
     },
       //GET REQUEST
 
@@ -49,6 +53,7 @@ module.exports = {
   addUser (req, res, next) {
     new Users(req.body).save( (err, user) => {
       if (err) {return res.send(err); }
+      req.session.user = user;
       return res.json(user);
     })
   },
@@ -83,13 +88,16 @@ module.exports = {
   //logout
 
     logOut( req, res, next ) {
+    req.session.destroy();
     req.logout();
     res.redirect('/');
   },
     isLoggedIn(req, res, next) {
-      if (req.isAuthenticated())
-          return next();
-      res.Status(401);
+      if ( req.isAuthenticated() ) {
+        console.log(req.isAuthenticated());
+        return next();
+      }
+      res.status(401);
   },
 
 
