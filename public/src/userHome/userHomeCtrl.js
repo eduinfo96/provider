@@ -1,8 +1,16 @@
 angular.module("providerApp")
 
-.controller("userHomeCtrl", function($scope, $rootScope, appService, userService, $cookies, $location){
+.controller("userHomeCtrl", function($scope, $rootScope, appService, userService, $cookies, $location, providerService){
   $('#profileSetup').modal('hide')
 
+
+  function getServices() {
+    return providerService.getServices().then( (response) => {
+      $scope.allServices = response.data;
+      console.log($scope.allServices);
+    })
+  }
+  getServices();
 
   function checkIfUser() {
     appService.FBinfo().then( (response) => {
@@ -71,6 +79,7 @@ function getReverseGeocodingData(lat, lng) {
               "zip": results[0].address_components[7].long_name,
               "lat": lat,
               "lon": lng,
+              "placeID": results[0].place_id,
             }
             $scope.locations.push(newLocation)
             console.log(newLocation);
@@ -105,6 +114,7 @@ $scope.geoCode = function () {
                   "zip": results[0].address_components[7].long_name,
                   "lat": loc.lat(),
                   "lon": loc.lng(),
+                  "placeID": results[0].place_id,
                 }
                 $scope.locations.push(newLocation)
                 $scope.gotoLocation(loc.lat(), loc.lng());
@@ -114,6 +124,36 @@ $scope.geoCode = function () {
         });
     }
 };
+
+//Takes in a starting object and ending object and calculates the distance btwn {lat: ,lng:}
+function getDistance(starting, ending) {
+  var service = new google.maps.DistanceMatrixService;
+  service.getDistanceMatrix({
+    origins: [starting],
+    destinations: [ending],
+    travelMode: google.maps.TravelMode.DRIVING,
+    unitSystem: google.maps.UnitSystem.METRIC,
+    avoidHighways: false,
+    avoidTolls: false
+  }, function(response, status) {
+    if (status !== "OK") {
+      console.log(status);
+    }
+    else {
+      var distance =response.rows[0].elements[0].distance.value;
+      var miles = insertDecimalandConvert(distance);
+      return miles;
+    }
+    })
+};
+
+//This function takes in the kilometers value given by Google Maps and converts it to miles
+function insertDecimalandConvert(num) {
+  let kilos= Number((num/1000).toFixed(2));
+  console.log(kilos)
+  let miles = kilos*0.621371;
+  return miles;
+}
 
 $scope.locations = [
   {}
@@ -147,6 +187,19 @@ $scope.updateUser= () => {
       $location.path('/provider')
     }
   } )
+}
+
+$scope.setLocation=(lat, lon)=>{
+  const setLocation= {
+    currentLocation: {
+      lat: lat,
+      lng: lon,
+    }
+  }
+  userService.editUser(setLocation, $scope.currentUser._id).then( (user) => {
+    $scope.currentUser = user.data;
+    $rootScope.currentUser = user.data;
+  })
 }
 
 

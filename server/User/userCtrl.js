@@ -23,6 +23,7 @@ module.exports = {
       Users.findOne({facebookID: userObject.facebookID})
       .populate('servicesOffered')
       .populate('reviews')
+      // .populate('messages')
       .exec( (err, user) => {
         if (!user) {return res.json(userObject)};
         return res.status(200).json(user);
@@ -40,6 +41,7 @@ module.exports = {
       Users.findById( req.params.id )
       .populate('reviews')
       .populate('servicesOffered')
+      // .populate('messages')
       .exec( (err, user) => {
         if (err) {return res.status(500).json(err); }
         return res.status(200).json(user);
@@ -66,7 +68,11 @@ module.exports = {
   //PUT REQUEST
   editUser (req, res, next) {
     if (!req.params.id) {return res.status(400).send("Not in User")};
-    Users.findByIdAndUpdate(req.params.id, req.body, (err, response) => {
+    Users.findByIdAndUpdate(req.params.id, req.body)
+    .populate('reviews')
+    .populate('servicesOffered')
+    // .populate('messages')
+    .exec( (err, response) => {
       if (err) { return res.send(err); }
       else {return res.json(response); }
     })

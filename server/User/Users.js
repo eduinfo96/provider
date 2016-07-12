@@ -21,8 +21,13 @@ const Users = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: `Reviews`
    }]
+ , messages: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: `Messages`
+    }]
   , isAdmin: {type: Boolean, default: false}
   , cellNumber: {type: Number}
+  , currentLocation: {type: Object}
   , savedLocations: []
   , isActive: {type: Boolean, default: false}
 }

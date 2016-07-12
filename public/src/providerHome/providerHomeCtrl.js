@@ -6,7 +6,6 @@ angular.module("providerApp")
   $scope.userServices = $scope.currentUser.servicesOffered
 
 
-  //THIS FUNCTION GETS ALL SERVICES
   // function getServices() {
   //   return providerService.getServices().then( (response) => {
   //     $scope.allServices = response.data;
