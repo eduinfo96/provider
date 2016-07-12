@@ -5,7 +5,7 @@ module.exports = {
 //GET REQUEST
   getMessages (req, res, next) {
     Messages.find( (req.query) )
-      .population('serviceRef')
+      .populate('serviceRef')
       .populate('to')
       .populate('from')
       .exec( (err,messages) => {
@@ -15,7 +15,7 @@ module.exports = {
     },
   getThisMessage (req, res, next) {
     Messages.findById(req.params.id)
-      .population('serviceRef')
+      .populate('serviceRef')
       .populate('to')
       .populate('from')
       .exec( (err,messages) => {
@@ -39,7 +39,11 @@ module.exports = {
   //PUT REQUEST
   editMessage (req, res, next) {
     if (!req.params.id) {return res.status(400).send("Not in Message")};
-    Messages.findByIdAndUpdate(req.params.id, req.body, (err, response) => {
+    Messages.findByIdAndUpdate(req.params.id, req.body)
+    .populate('serviceRef')
+    .populate('to')
+    .populate('from')
+    .exec( (err, response) => {
       if (err) { return res.send(err); }
       else {return res.json(response); }
     })
