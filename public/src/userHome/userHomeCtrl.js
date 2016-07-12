@@ -3,15 +3,6 @@ angular.module("providerApp")
 .controller("userHomeCtrl", function($scope, $rootScope, appService, userService, $cookies, $location, providerService){
   $('#profileSetup').modal('hide')
 
-
-  function getServices() {
-    return providerService.getServices().then( (response) => {
-      $scope.allServices = response.data;
-      console.log($scope.allServices);
-    })
-  }
-  getServices();
-
   function checkIfUser() {
     appService.FBinfo().then( (response) => {
       if (!response.data._id) {
@@ -44,6 +35,7 @@ angular.module("providerApp")
   }
 
   checkIfUser();
+
 
 
 
@@ -202,6 +194,22 @@ $scope.setLocation=(lat, lon)=>{
   })
 }
 
+// $scope.allServices= []
+function getServices() {
+  return providerService.getServices().then( (response) => {
+    $scope.allServices = response.data;
+    // console.log(allServices);
+    // for (var i = 0; i < allServices.length; i++) {
+    //   var distanceBtwn= getDistance(allServices[i].user.currentLocation, $scope.currentUser.currentLocation)
+    //   if (distanceBtwn <= allServices[i].travelDistance) {
+    //     $scope.allServices.push(allServices[i]);
+    //   }
+    // }
+    // console.log($scope.allServices);
+  })
+}
+// setTimeout(getServices(), 500);
+getServices();
 
 
 

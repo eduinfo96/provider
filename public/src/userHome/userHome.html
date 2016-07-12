@@ -126,11 +126,15 @@
     </div>
 
     <div class="col-sm-5" id="sr_sc_ServicesAvail">
-      <div class="" ng-show="">
-        users only
-      </div>
-      <div class="">
-        providers only
+      <div ng-repeat="service in allServices">
+        <img class="sr_tc_img" ng-src="{{service.user.photos[0].value}}" alt="" /><br>
+        {{service.user.firstName}}<br>
+        {{service.type}}<br>
+        {{service.skillLevel}}<br>
+        {{service.specialties}}<br>
+        {{service.description}}<br>
+        {{service.flatRate}}{{service.hrlyRate}}<br>
+
       </div>
     </div>
   </div>

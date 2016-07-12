@@ -41,7 +41,7 @@ module.exports = {
       Users.findById( req.params.id )
       .populate('reviews')
       .populate('servicesOffered')
-      // .populate('messages')
+      .populate('messages')
       .exec( (err, user) => {
         if (err) {return res.status(500).json(err); }
         return res.status(200).json(user);
@@ -71,7 +71,7 @@ module.exports = {
     Users.findByIdAndUpdate(req.params.id, req.body)
     .populate('reviews')
     .populate('servicesOffered')
-    // .populate('messages')
+    .populate('messages')
     .exec( (err, response) => {
       if (err) { return res.send(err); }
       else {return res.json(response); }
