@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 const Messages = mongoose.Schema(
   {
     messageType: {type: String}
-  , requestDate: {type: String}
-  , sentTime: {type: Number}
+  , requestDate: {type: Object}
+  , sentTime: {type: Object}
   , content: {type: String}
-  , status: {type: String}
+  , status: {type: String, default:"Unapproved"}
   , read: {type: Boolean, default: false}
   , serviceRef: {
       type: mongoose.Schema.Types.ObjectId,

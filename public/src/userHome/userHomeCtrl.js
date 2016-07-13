@@ -1,8 +1,15 @@
 angular.module("providerApp")
 
-.controller("userHomeCtrl", function($scope, $rootScope, appService, userService, $cookies, $location, providerService){
-  $('#profileSetup').modal('hide')
+.controller("userHomeCtrl", function($scope, $rootScope, appService, userService, $cookies, $location, providerService, messageService){
 
+//Set the profile Setup Modal to hide, if the user does not have type, than the modal is shown in a later function
+  $('#profileSetup').modal('hide')
+  $('#composeMessage').modal('hide')
+
+
+
+// This function checks if the fb data is already associated with a user, if not, it creates a user.
+// Both return a user object
   function checkIfUser() {
     appService.FBinfo().then( (response) => {
       if (!response.data._id) {
@@ -40,6 +47,7 @@ angular.module("providerApp")
 
 
 $scope.loc = { lat: 32.7767, lon: -96.7970};
+//this is the functions that is called when you want to go to a location on the Map
 $scope.gotoCurrentLocation = function () {
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -51,6 +59,8 @@ $scope.gotoCurrentLocation = function () {
     }
     return false;
 };
+//
+// pushes any location to the recent locations array, where you can then decide to save the location
 function getReverseGeocodingData(lat, lng) {
     var latlng = new google.maps.LatLng(lat, lng);
     // This is making the Geocode request
@@ -118,6 +128,7 @@ $scope.geoCode = function () {
 };
 
 //Takes in a starting object and ending object and calculates the distance btwn {lat: ,lng:}
+//not currently being used
 function getDistance(starting, ending) {
   var service = new google.maps.DistanceMatrixService;
   service.getDistanceMatrix({
@@ -151,6 +162,7 @@ $scope.locations = [
   {}
 ];
 
+//pushes the location to the user object into the array
 $scope.saveLocation = (newLocation) => {
   userService.addLocation($scope.currentUser._id, newLocation).then( (user) => {
     $rootScope.currentUser = user.data;
@@ -158,12 +170,15 @@ $scope.saveLocation = (newLocation) => {
   })
 }
 
+
+//if the user is new it will show the profileSetup Modal
 setTimeout(function(){
   if (!$scope.currentUser.userType) {
     $('#profileSetup').modal('show')
   }
 },500)
 
+//the function that is used on the profileSetup modal, to edit the user and add the fields below
 $scope.updateUser= () => {
   const updatedUser= {
     userType: $scope.userType
@@ -181,6 +196,8 @@ $scope.updateUser= () => {
   } )
 }
 
+
+//this function set's the users Current Location, so that distance can be calculated between the user and the provider
 $scope.setLocation=(lat, lon)=>{
   const setLocation= {
     currentLocation: {
@@ -194,6 +211,7 @@ $scope.setLocation=(lat, lon)=>{
   })
 }
 
+// Gets all services currently, want to make it so that only servives in the distance travled are available to view
 // $scope.allServices= []
 function getServices() {
   return providerService.getServices().then( (response) => {
@@ -211,6 +229,30 @@ function getServices() {
 // setTimeout(getServices(), 500);
 getServices();
 
+
+//allows the user to send a request to the provider.
+$scope.sendMessage=()=>{
+  const message= {
+     messageType: $scope.tempService.request,
+     requestDate: new Date(),
+     sentTime: new Date(),
+     content: $scope.tempService.messageContent,
+     subject: $scope.tempService.subject,
+     serviceRef: $scope.tempService._id,
+     to: $scope.tempService.user._id,
+     from: $scope.currentUser._id
+  }
+  console.log(message);
+  messageService.sendMessage(message).then((response) => {
+    console.log(response);
+    $scope.tempService = {}
+  });
+}
+
+$scope.writeMessage = (service) => {
+  $('#composeMessage').modal('show');
+  $scope.tempService= service;
+}
 
 
 

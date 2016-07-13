@@ -23,7 +23,7 @@ module.exports = {
       Users.findOne({facebookID: userObject.facebookID})
       .populate('servicesOffered')
       .populate('reviews')
-      // .populate('messages')
+      .populate('messages')
       .exec( (err, user) => {
         if (!user) {return res.json(userObject)};
         return res.status(200).json(user);

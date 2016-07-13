@@ -49,9 +49,6 @@
         </div>
       </div>
 
-
-
-
     </div>
 
     <div class="col-sm-2" id="sr_sc_locations">
@@ -135,12 +132,22 @@
         {{service.description}}<br>
         {{service.flatRate}}{{service.hrlyRate}}<br>
 
+        <!-- Button trigger modal -->
+        <div class="">
+          <button type="button" ng-click="writeMessage(service)">
+            Send Request
+          </button>
+        </div><br>
       </div>
     </div>
   </div>
 
 </div> <!--End of the container-->
 
+
+
+
+<!--This modal will only appear if the user does not have a defined user Type-->
 <div class="modal fade" tabindex="-1" role="dialog" id="profileSetup">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -182,6 +189,63 @@
         </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" ng-click="updateUser()">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Form to send a message to the PRVider -->
+<div class="modal fade" tabindex="-1" role="dialog" id="composeMessage">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Send a New Request</h4>
+      </div>
+      <div class="modal-body">
+
+        <form>
+          <!--Allows the user to define the status of the message-->
+          <fieldset class="form-group">
+            <label for="exampleTextarea">When would you like to submit a request for?</label>
+            <div class="radio">
+              <label>
+                <input type="radio" ng-model="tempService.request" name="optionsRadios" id="optionsRadios1" value="Immeadiate" checked>
+                Today- I need help right away.
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" ng-model="tempService.request" name="optionsRadios" id="optionsRadios2" value="Future">
+                Future- I need to schedule help for sometime in the future.
+              </label>
+            </div>
+          </fieldset>
+
+          <!--If either of the status Radios are chosen then this form will show-->
+          <div ng-show="tempService.request">
+            <fieldset class="form-group">
+              <div class="">
+                <label class="control-label">Subject:</label>
+                <div class="">
+                  <input type="text" class="form-control" id="exampleInputAmount" placeholder="Ex: Leak in my Roof!" ng-model="tempService.subject" required>
+                </div>
+              </div>
+                <div class="">
+                  <label class="control-label">Message:</label>
+                  <div class="">
+                    <textarea type="text" class="form-control" id="exampleInputAmount" placeholder="Tell us about your project, that way your PRVider can better decide if he can help.." ng-model="tempService.messageContent" row="10" required></textarea>
+                  </div>
+                </div>
+            </fieldset>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" data-dismiss="modal" ng-click="sendMessage(service)" class="btn btn-primary">Send</button>
       </div>
     </div>
   </div>

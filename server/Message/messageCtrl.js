@@ -1,4 +1,4 @@
-const Messages = require('./Message')
+const Messages = require('./Messages')
 const Users = require('../User/Users')
 
 module.exports = {
@@ -26,14 +26,14 @@ module.exports = {
   //POST REQUEST
   sendMessage(req, res, next) {
     new Messages(req.body).save( (err, message) => {
-      if (err) {return res.send(err)};
-      Users.findByIdAndUpdate(req.body.to, {$push: {messages: message_id}}, {safe: true, upsert:true, new:true}, (err, user) => {
-        if (err) { return res.send(err); }
+      if (err) {return res.status(500).json(err)};
+      Users.findByIdAndUpdate(req.body.to, {$push: {messages: message._id}}, {safe: true, upsert:true, new:true}, (err, user) => {
+        if (err) { return res.status(500).json(err); }
       })
-      Users.findByIdAndUpdate(req.body.from, {$push: {messages: message_id}}, {safe: true, upsert:true, new:true}, (err, user) => {
-        if (err) { return res.send(err); }
+      Users.findByIdAndUpdate(req.body.from, {$push: {messages: message._id}}, {safe: true, upsert:true, new:true}, (err, user) => {
+        if (err) { return res.status(500).json(err); }
       })
-      return res.json(message);
+      return res.status(200).json(message);
     })
   },
   //PUT REQUEST

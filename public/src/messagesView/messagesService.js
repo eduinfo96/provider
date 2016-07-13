@@ -14,10 +14,10 @@ angular.module("providerApp")
       return $http.post(`${ref.url}/api/messages`, message);
     },
     editMessage: function (updatedMessage, messageID) {
-      return $http.put(`${ref.url}/api/services/${messageID}`, updatedMessage);
+      return $http.put(`${ref.url}/api/messages/${messageID}`, updatedMessage);
     },
     deleteMessage: function (messageID) {
-      return $http.delete(`${ref.url}/api/services/${messageID}`);
+      return $http.delete(`${ref.url}/api/messages/${messageID}`);
     }
 
   }

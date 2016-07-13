@@ -1,5 +1,5 @@
 angular.module("providerApp")
-.factory("providerService", function ($http, ref, $cookies) {
+.factory("providerService", function ($http, ref) {
   return {
     getServices: function () {
       return $http.get(`${ref.url}/api/services`);
