@@ -1,0 +1,12 @@
+/*Nav Bar*/
+.gopher_container {
+  padding: 1px;
+}
+.gopher_navBar {
+  height: 50px;
+  padding: 0;
+  margin: 0;
+}
+#menuIcon{
+  padding: 5px;
+}
