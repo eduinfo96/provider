@@ -1,17 +1,40 @@
+<link rel="stylesheet" href="../../assets/css/inboxView.css" media="screen" title="no title" charset="utf-8">
+
 <user-nav></user-nav>
 
-<div class="">
-  <h1>Messages Recieved</h1>
-  <div class="" ng-repeat="userInboxMessage in userInboxMessages">
-    {{userInboxMessage}}<br>
-    <button type="button" name="button" ng-click="deleteMessage(userInboxMessage._id)">delete message</button>
-  </div>
-</div>
+<div class="messagesContainer">
 
-<div class="">
-  <h1>Sent Messages</h1>
-  <div class="" ng-repeat="sentMessage in sentMessages">
-    {{sentMessage}}<br>
-    <button type="button" name="button" ng-click="deleteMessage(sentMessage._id)">delete message</button>
+  <div class="recivedMessages">
+    <h1>Request Recieved</h1>
+    <div class="indvRequest" ng-repeat="userInboxMessage in userInboxMessages">
+      <img class="inboxPhoto" ng-src="{{userInboxMessage.from.photos[0].value}}" alt="" /><br>
+      <div class="messagePreview">
+        <div class="messagePreviewItem">
+          <b>Status:</b> {{userInboxMessage.status}}
+        </div>
+        <div class="messagePreviewItem">
+          <b>Sent:</b> {{userInboxMessage.sentTime}}
+        </div>
+        <div class="messagePreviewItem">
+          <b>Subject:</b> {{userInboxMessage.subject}}
+        </div><br>
+        <div class="messagePreviewItem">
+          <b>Content:</b> {{userInboxMessage.content}}
+        </div>
+      </div>
+      <button type="button" name="button" ng-click="deleteMessage(userInboxMessage._id)">Delete Message</button>
+    </div>
   </div>
+
+  <div class="sentMessages">
+    <h1>Sent Messages</h1>
+    <div class="" ng-repeat="sentMessage in sentMessages">
+      <img class="inboxPhoto" ng-src="{{sentMessage.to.photos[0].value}}" alt="" /><br>
+      <b>Sent:</b> {{sentMessage.sentTime}}<br>
+      <b>Subject:</b> {{sentMessage.subject}}<br>
+      <b>Content:</b> {{sentMessage.content}}<br>
+      <button type="button" name="button" ng-click="deleteMessage(sentMessage._id)">delete message</button>
+    </div>
+  </div>
+
 </div>

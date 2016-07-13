@@ -4,6 +4,7 @@ const Messages = mongoose.Schema(
   {
     messageType: {type: String}
   , requestDate: {type: Object}
+  , subject: {type: String}
   , sentTime: {type: Object}
   , content: {type: String}
   , status: {type: String, default:"Unapproved"}

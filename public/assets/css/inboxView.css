@@ -1,0 +1,27 @@
+.messagesContainer {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.indvRequest {
+  height: 100px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  background-color: rgba(255, 255, 255, 0.2);
+  font-size: 13px;
+}
+
+.inboxPhoto {
+  height:100px;
+  width: 100px;
+  float: left;
+  margin-right: 10px;
+}
+
+.messagePreviewItem {
+  display: inline-block;
+  margin-right: 10px;
+}
