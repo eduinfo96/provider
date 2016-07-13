@@ -25,11 +25,10 @@ angular.module("providerApp")
               , birthday: fb.birthday
               , location: fb.location
             }
-            console.log("user created!");
             return userService.addUser(newUser).then( (user) => {
-              $rootScope.currentUser =user;
-              $scope.currentUser = user;
-              $scope.user = user;
+              $rootScope.currentUser =user.data;
+              $scope.currentUser = user.data;
+              $scope.user = user.data;
               console.log("new user exist", $scope.currentUser);
               return ;
             });
@@ -178,7 +177,7 @@ setTimeout(function(){
   }
 },500)
 
-//the function that is used on the profileSetup modal, to edit the user and add the fields below
+// the function that is used on the profileSetup modal, to edit the user and add the fields below
 $scope.updateUser= () => {
   const updatedUser= {
     userType: $scope.userType
@@ -242,9 +241,9 @@ $scope.sendMessage=()=>{
      to: $scope.tempService.user._id,
      from: $scope.currentUser._id
   }
-  console.log(message);
+  // console.log(message);
   messageService.sendMessage(message).then((response) => {
-    console.log(response);
+    // console.log(response);
     $scope.tempService = {}
   });
 }

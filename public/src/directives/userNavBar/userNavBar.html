@@ -1,5 +1,55 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" ng-click="isCollapsed = !isCollapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand gopher_container" href="#"><img class=" gopher_navBar" src="../../../assets/images/pocket-gophers.png" alt="" /></a>
+    </div>
 
-<div class="btn btn-block text-left navBarButtons">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="navbar-collapse" ng-class="isCollapsed ? 'collapse' : 'in'">
+      <ul class="nav navbar-nav">
+        <li ng-class="getClass('/profile')" class=""><a href="#/profile"><i class="fa fa-user" aria-hidden="true"></i> User Home<span class="sr-only">(current)</span></a></li>
+        <li ng-class="getClass('/provider')"><a href="#/provider"><i class="fa fa-diamond" aria-hidden="true"></i>  Provider Home</a></li>
+        <li ng-class="getClass('/')" class="dropdown">
+          <a class="dropdown-toggle" id="menuIcon" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-chevron-circle-down fa-3x" aria-hidden="true"></i><span class=""></span></a>
+          <ul class="dropdown-menu">
+            <li ng-class="getClass('/home')"><a href="#/home"><i class="fa fa-home" aria-hidden="true"></i> Home Page</a></li>
+            <li ng-class="getClass('/profile')"><a href="#/profile"><i class="fa fa-user" aria-hidden="true"></i>  User Home</a></li>
+            <li ng-class="getClass('/provider')"><a href="#/provider"><i class="fa fa-diamond" aria-hidden="true"></i>  Provider Home</a></li>
+            <li role="separator" class="divider"></li>
+            <li ng-class="getClass('/inbox')" ><a href="#/inbox"><i class="fa fa-inbox" aria-hidden="true"></i>  Inbox</a></li>
+            <li role="separator" class="divider"></li>
+            <li ng-class="getClass('/logout')"><a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>  Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <!-- <li ng-class="getClass('/')"><a href="#">Link</a></li> -->
+        <li ng-class="getClass('/')" class="dropdown">
+          <a class="dropdown-toggle" id="menuIcon" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars fa-3x" aria-hidden="true"></i><span class=""></span></a>
+          <ul class="dropdown-menu">
+            <li ng-class="getClass('/home')"><a href="#/home"><i class="fa fa-home" aria-hidden="true"></i>  Home Page</a></li>
+            <li ng-class="getClass('/profile')"><a href="#/profile"><i class="fa fa-user" aria-hidden="true"></i>  User Home</a></li>
+            <li ng-class="getClass('/provider')"><a href="#/provider"><i class="fa fa-diamond" aria-hidden="true"></i>  Provider Home</a></li>
+            <li role="separator" class="divider"></li>
+            <li ng-class="getClass('/inbox')"><a href="#/inbox"><i class="fa fa-inbox" aria-hidden="true"></i>  Inbox</a></li>
+            <li role="separator" class="divider"></li>
+            <li ng-class="getClass('/logout')"><a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>  Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<!-- <div class="btn btn-block text-left navBarButtons">
   <i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>
   <a href="/logout" ng-click="logout()">Logout</a>
 </div>
@@ -25,4 +75,4 @@
   <i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i>
   <a href="/#/inbox">Inbox</a>
 
-</div>
+</div> -->
