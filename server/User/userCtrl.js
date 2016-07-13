@@ -96,7 +96,6 @@ module.exports = {
   },
     isLoggedIn(req, res, next) {
       if ( req.isAuthenticated() ) {
-        console.log(req.isAuthenticated());
         return next();
       }
       res.status(401);
