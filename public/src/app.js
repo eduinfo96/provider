@@ -17,6 +17,11 @@ angular.module('providerApp', ['ui.router', 'ngCookies'])
       templateUrl: "src/providerHome/providerHome.html",
       controller: "providerHomeCtrl"
     })
+    .state('inbox', {
+      url: '/inbox',
+      templateUrl: "src/messagesView/messages.html",
+      controller: "messagesCtrl"
+    })
 
     $urlRouterProvider.otherwise("/home");
 })
