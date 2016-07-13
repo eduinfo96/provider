@@ -1,7 +1,17 @@
+<user-nav></user-nav>
+
 <div class="">
   <h1>Messages Recieved</h1>
+  <div class="" ng-repeat="userInboxMessage in userInboxMessages">
+    {{userInboxMessage}}<br>
+    <button type="button" name="button" ng-click="deleteMessage(userInboxMessage._id)">delete message</button>
+  </div>
 </div>
 
 <div class="">
   <h1>Sent Messages</h1>
+  <div class="" ng-repeat="sentMessage in sentMessages">
+    {{sentMessage}}<br>
+    <button type="button" name="button" ng-click="deleteMessage(sentMessage._id)">delete message</button>
+  </div>
 </div>
