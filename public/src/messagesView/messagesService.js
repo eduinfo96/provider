@@ -10,6 +10,9 @@ angular.module("providerApp")
     getUsersInbox: function (query) {
       return $http.get(`${ref.url}/api/messages?to=${query}`);
     },
+    getUsersInboxQuery: function (query, messageType, status) {
+      return $http.get(`${ref.url}/api/messages?to=${query}&messageType=${messageType}&status=${status}`);
+    },
     sendMessage: function (message) {
       return $http.post(`${ref.url}/api/messages`, message);
     },

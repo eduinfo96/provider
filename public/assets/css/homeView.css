@@ -1,0 +1,69 @@
+/*Home Page*/
+/*.dallasSkyline {
+  max-width: 100%;
+  min-width: 100%;
+  position: fixed;
+}*/
+
+
+
+.homePageText {
+  font-family: 'Roboto Condensed', sans-serif;
+  text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 50px;
+  height: 600px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: black;
+  font-size: 4em;
+  position: absolute;
+  width: 80%;
+  font-weight: 400;
+}
+
+.homePageText2 {
+  /*font-family: 'Playfair Display';*/
+  line-height: normal;
+  font-size: 1em;
+  font-weight: 600;
+  color: #212121;
+}
+
+.homePageText img {
+  display: block;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 300px;
+}
+
+.homePageView ul {
+  margin: 0;
+  padding: 0;
+}
+
+.homePageText li {
+  display: inline-block;
+}
+
+
+a:hover {
+  text-decoration: none;
+}
+
+#linkHomePage, #linkHomePageTwo {
+  display: block;
+  font-size: 0.5em;
+  color:white;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  list-style: none;
+  background-color: #3B5998;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 300px;
+  border-radius: 10px;
+}

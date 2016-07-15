@@ -1,11 +1,24 @@
+<link rel="stylesheet" href="../../assets/css/homeView.css" media="screen" title="no title" charset="utf-8">
+
+
 <div class="homePageView">
 
-  <img class="dallasSkyline" src="../assets/images/dallasSkyline.jpg" alt="" />
+  <!-- <div id="bg">
+    <img class="dallasSkyline" src="../assets/images/dallasSkyline.jpg" alt="" />
+  </div> -->
 
-  <div class="homePageText">FIND THE HELP YOU NEED NOW.<br>
-    <div class="homePageText2">Now in Dallas, TX<br> Coming to a city near you, soon.</div><div>fuck</div>
+  <div class="homePageText">
+    <img src="../assets/images/gophr.png" alt="" />
+    <div class="homePageText2">FIND THE HELP YOU NEED, NOW.</div>
 
-    <a href="/auth/facebook">Sign In With Facebook</a>
+    <ul>
+      <a id="linkHomePage" href="/auth/facebook">
+        <li ng-class="getClass('/auth/facebook')"><i class="fa fa-facebook-official" aria-hidden="true"></i> Sign in with Facebook</li>
+      </a>
+      <a id="linkHomePageTwo" href="/auth/facebook">
+        <li ng-class="getClass('/auth/facebook')"><i class="fa fa-facebook-official" aria-hidden="true"></i> Sign up with Facebook</li>
+      </a>
+    </ul>
 
   </div>
 

@@ -2,39 +2,408 @@
 
 <user-nav></user-nav>
 
-<div class="messagesContainer">
+<!-- <div class="container">
+<div class="messagesContainer "> -->
 
-  <div class="recivedMessages">
-    <h1>Request Recieved</h1>
-    <div class="indvRequest" ng-repeat="userInboxMessage in userInboxMessages">
-      <img class="inboxPhoto" ng-src="{{userInboxMessage.from.photos[0].value}}" alt="" /><br>
-      <div class="messagePreview">
-        <div class="messagePreviewItem">
-          <b>Status:</b> {{userInboxMessage.status}}
-        </div>
-        <div class="messagePreviewItem">
-          <b>Sent:</b> {{userInboxMessage.sentTime}}
-        </div>
-        <div class="messagePreviewItem">
-          <b>Subject:</b> {{userInboxMessage.subject}}
-        </div><br>
-        <div class="messagePreviewItem">
-          <b>Content:</b> {{userInboxMessage.content}}
-        </div>
-      </div>
-      <button type="button" name="button" ng-click="deleteMessage(userInboxMessage._id)">Delete Message</button>
-    </div>
+ <!-- <div class="inboxNavBar">
+
   </div>
+
+
+</div>
 
   <div class="sentMessages">
     <h1>Sent Messages</h1>
     <div class="" ng-repeat="sentMessage in sentMessages">
       <img class="inboxPhoto" ng-src="{{sentMessage.to.photos[0].value}}" alt="" /><br>
-      <b>Sent:</b> {{sentMessage.sentTime}}<br>
+      <b>Sent:</b> {{sentMessage.sentTime | date : format : short}}<br>
       <b>Subject:</b> {{sentMessage.subject}}<br>
       <b>Content:</b> {{sentMessage.content}}<br>
       <button type="button" name="button" ng-click="deleteMessage(sentMessage._id)">delete message</button>
     </div>
   </div>
 
+</div> -->
+
+
+<div class="container">
+ <div class="mail-box">
+                  <aside class="sm-side">
+                      <div class="user-head">
+                          <a class="inbox-avatar" href="javascript:;">
+                              <img  width="64" hieght="60" ng-src="{{currentUser.photos[0].value}}">
+                          </a>
+                          <div class="user-name">
+                              <h5><a href="#">{{currentUser.firstName}}</a></h5>
+                          </div>
+                          <!-- <a class="mail-dropdown pull-right" href="javascript:;">
+                              <i class="fa fa-chevron-down"></i>
+                          </a> -->
+                      </div>
+                      <div class="inbox-body">
+                          <a href="#myModal" data-toggle="modal"  title="Compose"    class="btn btn-compose">
+                              Request
+                          </a>
+                          <!-- Modal -->
+                          <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade" style="display: none;">
+                              <div class="modal-dialog">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                          <h4 class="modal-title">Request</h4>
+                                      </div>
+                                      <div class="modal-body">
+                                          <form role="form" class="form-horizontal">
+                                              <div class="form-group">
+                                                  <label class="col-lg-2 control-label">To</label>
+                                                  <div class="col-lg-10">
+                                                      <input type="text" placeholder="" id="inputEmail1" class="form-control">
+                                                  </div>
+                                              </div>
+                                              <div class="form-group">
+                                                  <label class="col-lg-2 control-label">Cc / Bcc</label>
+                                                  <div class="col-lg-10">
+                                                      <input type="text" placeholder="" id="cc" class="form-control">
+                                                  </div>
+                                              </div>
+                                              <div class="form-group">
+                                                  <label class="col-lg-2 control-label">Subject</label>
+                                                  <div class="col-lg-10">
+                                                      <input type="text" placeholder="" id="inputPassword1" class="form-control">
+                                                  </div>
+                                              </div>
+                                              <div class="form-group">
+                                                  <label class="col-lg-2 control-label">Message</label>
+                                                  <div class="col-lg-10">
+                                                      <textarea rows="10" cols="30" class="form-control" id="" name=""></textarea>
+                                                  </div>
+                                              </div>
+
+                                              <!-- <div class="form-group">
+                                                  <div class="col-lg-offset-2 col-lg-10">
+                                                      <span class="btn green fileinput-button">
+                                                        <i class="fa fa-plus fa fa-white"></i>
+                                                        <span>Attachment</span>
+                                                        <input type="file" name="files[]" multiple="">
+                                                      </span>
+                                                      <button class="btn btn-send" type="submit">Send</button>
+                                                  </div>
+                                              </div> -->
+                                          </form>
+                                      </div>
+                                  </div><!-- /.modal-content -->
+                              </div><!-- /.modal-dialog -->
+                          </div><!-- /.modal -->
+                      </div>
+                      <ul class="inbox-nav inbox-divider">
+                          <li class="active">
+                              <a ng-click="IR=true; FR=false; IAR=false; FAR=false; SM=false"><i class="fa fa-inbox"></i>Immeadiate Request</a>
+
+                          </li>
+                          <li>
+                              <a ng-click="IR=false; FR=true; IAR=false; FAR=false; SM=false"><i class="fa fa-bookmark-o"></i>Pending Request</a>
+                          </li>
+                          <li>
+                              <a ng-click="IR=false; FR=false; IAR=true; FAR=false; SM=false"><i class="fa fa-bookmark-o"></i>Appointments Today</a>
+                          </li>
+                          <li>
+                              <a ng-click="IR=false; FR=false; IAR=false; FAR=true; SM=false"><i class=" fa fa-external-link"></i>Upcoming Appointments</a>
+                          </li>
+                          <li>
+                              <a ng-click="IR=false; FR=false; IAR=false; FAR=false; SM=true"><i class=" fa fa-envelope-o"></i>Sent</a>
+                          </li>
+                      </ul>
+                      <!-- <ul class="nav nav-pills nav-stacked labels-info inbox-divider">
+                          <li> <h4>Labels</h4> </li>
+                          <li> <a href="#"> <i class=" fa fa-sign-blank text-danger"></i> Work </a> </li>
+                          <li> <a href="#"> <i class=" fa fa-sign-blank text-success"></i> Design </a> </li>
+                          <li> <a href="#"> <i class=" fa fa-sign-blank text-info "></i> Family </a>
+                          </li><li> <a href="#"> <i class=" fa fa-sign-blank text-warning "></i> Friends </a>
+                          </li><li> <a href="#"> <i class=" fa fa-sign-blank text-primary "></i> Office </a>
+                          </li>
+                      </ul> -->
+                      <!-- <ul class="nav nav-pills nav-stacked labels-info ">
+                          <li> <h4>Buddy online</h4> </li>
+                          <li> <a href="#"> <i class=" fa fa-circle text-success"></i>Alireza Zare <p>I do not think</p></a>  </li>
+                          <li> <a href="#"> <i class=" fa fa-circle text-danger"></i>Dark Coders<p>Busy with coding</p></a> </li>
+                          <li> <a href="#"> <i class=" fa fa-circle text-muted "></i>Mentaalist <p>I out of control</p></a>
+                          </li><li> <a href="#"> <i class=" fa fa-circle text-muted "></i>H3s4m<p>I am not here</p></a>
+                          </li><li> <a href="#"> <i class=" fa fa-circle text-muted "></i>Dead man<p>I do not think</p></a>
+                          </li>
+                      </ul> -->
+
+                      <div class="inbox-body text-center">
+                          <div class="btn-group">
+                              <a class="btn mini btn-primary" href="javascript:;">
+                                  <i class="fa fa-plus"></i>
+                              </a>
+                          </div>
+                          <div class="btn-group">
+                              <a class="btn mini btn-success" href="javascript:;">
+                                  <i class="fa fa-phone"></i>
+                              </a>
+                          </div>
+                          <div class="btn-group">
+                              <a class="btn mini btn-info" href="javascript:;">
+                                  <i class="fa fa-cog"></i>
+                              </a>
+                          </div>
+                      </div>
+
+                  </aside>
+                  <aside class="lg-side">
+                      <div class="inbox-head">
+                          <h3>Request Inbox</h3>
+                          <form action="#" class="pull-right position">
+                              <div class="input-append">
+                                  <input type="text" class="sr-input" placeholder="Search Mail">
+                                  <button class="btn sr-btn" type="button"><i class="fa fa-search"></i></button>
+                              </div>
+                          </form>
+                      </div>
+                      <div class="inbox-body">
+                         <div class="mail-option">
+                             <!-- <div class="chk-all">
+                                 <input type="checkbox" class="mail-checkbox mail-group-checkbox">
+                                 <div class="btn-group">
+                                     <a data-toggle="dropdown" href="#" class="btn mini all" aria-expanded="false">
+                                         All
+                                         <i class="fa fa-angle-down "></i>
+                                     </a>
+                                     <ul class="dropdown-menu">
+                                         <li><a href="#"> None</a></li>
+                                         <li><a href="#"> Read</a></li>
+                                         <li><a href="#"> Unread</a></li>
+                                     </ul>
+                                 </div>
+                             </div> -->
+
+                             <!-- <div class="btn-group">
+                                 <a data-original-title="Refresh" data-placement="top" data-toggle="dropdown" href="#" class="btn mini tooltips">
+                                     <i class=" fa fa-refresh"></i>
+                                 </a>
+                             </div> -->
+                             <!-- <div class="btn-group hidden-phone">
+                                 <a data-toggle="dropdown" href="#" class="btn mini blue" aria-expanded="false">
+                                     More
+                                     <i class="fa fa-angle-down "></i>
+                                 </a>
+                                 <ul class="dropdown-menu">
+                                     <li><a href="#"><i class="fa fa-pencil"></i>Mark as Read</a></li>
+                                     <li><a href="#"><i class="fa fa-ban"></i> Spam</a></li>
+                                     <li class="divider"></li>
+                                     <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
+                                 </ul>
+                             </div> -->
+                             <!-- <div class="btn-group">
+                                 <a data-toggle="dropdown" href="#" class="btn mini blue">
+                                     Move to
+                                     <i class="fa fa-angle-down "></i>
+                                 </a>
+                                 <ul class="dropdown-menu">
+                                     <li><a href="#"><i class="fa fa-pencil"></i> Mark as Read</a></li>
+                                     <li><a href="#"><i class="fa fa-ban"></i> Spam</a></li>
+                                     <li class="divider"></li>
+                                     <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
+                                 </ul>
+                             </div> -->
+
+                             <!-- <ul class="unstyled inbox-pagination">
+                                 <li><span>1-50 of 234</span></li>
+                                 <li>
+                                     <a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>
+                                 </li>
+                                 <li>
+                                     <a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a>
+                                 </li>
+                             </ul> -->
+                         </div>
+                          <table class="table table-inbox table-hover">
+                            <tbody>
+                              <div class="recivedMessages" ng-show="IR">
+                                <h1>Immeadiate Request</h1>
+                                <div  ng-repeat="ImmeadiatePendingMessage in ImmeadiatePendingMessages">
+                                  <div class="indvRequest messagePreview" ng-click="showMessage=true">
+                                    <img class="inboxPhoto" ng-src="{{ImmeadiatePendingMessage.from.photos[0].value}}" alt="" /><br>
+                                    <div class="messagePreviewText" >
+                                      <div class="messagePreviewItem view-message">
+                                        {{ImmeadiatePendingMessage.from.firstName}}
+                                      </div>
+
+                                      <div class="messagePreviewItem view-message">
+                                        {{ImmeadiatePendingMessage.subject}}
+                                      </div>
+
+                                      <div class="messagePreviewItem view-message text-right">
+                                        {{ImmeadiatePendingMessage.sentTime | date : format : 'short'}}
+                                      </div>
+
+                                    </div>
+                                  </div>
+
+                                  <div ng-show="showMessage" class="showMessage">
+                                    <div class="hideBtn">
+                                        <button type="button" name="button" ng-click="showMessage=false"><i class="fa fa-times-circle fa-2x" aria-hidden="true"></i></button>
+                                    </div>
+
+                                    <div class="message">
+                                      <b>{{ImmeadiatePendingMessage.from.firstName}}:</b> {{ImmeadiatePendingMessage.content}}
+                                      <div class="timeTxt">
+                                        {{ImmeadiatePendingMessage.sentTime | date: format : 'shortTime'}}
+                                      </div>
+                                    </div>
+
+                                    <hr>
+
+                                    <textarea class="form-control reply"name="name" rows="5" cols="40" placeholder="Reply here" ng-model="replyMsg"></textarea>
+                                    <div class="status">
+                                      <b>Status:</b> {{ImmeadiatePendingMessage.status}}
+                                    </div>
+
+                                    <button type="button" class="reply btn btn-primary" name="button" ng-click="reply(ImmeadiatePendingMessage.from._id, ImmeadiatePendingMessage.serviceRef._id)">Reply</button>
+                                    <button type="button" class="delete btn btn-danger" name="button" ng-click="deleteMessage(ImmeadiatePendingMessage._id)">Delete Message</button>
+                                    <button type="button" name="button" class="btn btn-success approve_decline" ng-click="editRequest('Approved', ImmeadiatePendingMessage._id)">Approve</button>
+                                    <button type="button" name="button" class="btn btn-warning approve_decline" ng-click="editRequest('Declined', ImmeadiatePendingMessage._id)">Decline</button>
+
+                                  </div>
+
+                                </div>
+                              </div>
+                              <div class="recivedMessages" ng-show="FR">
+                                <h1>Pending</h1>
+                                <div  ng-repeat="FuturePendingMessage in FuturePendingMessages">
+                                  <div class="indvRequest messagePreview" ng-click="showMessage=true">
+                                    <img class="inboxPhoto" ng-src="{{FuturePendingMessage.from.photos[0].value}}" alt="" /><br>
+                                    <div class="messagePreviewText" >
+                                      <div class="messagePreviewItem view-message">
+                                        {{FuturePendingMessage.from.firstName}}
+                                      </div>
+
+                                      <div class="messagePreviewItem view-message">
+                                        {{FuturePendingMessage.subject}}
+                                      </div>
+
+                                      <div class="messagePreviewItem view-message text-right">
+                                        {{FuturePendingMessage.sentTime | date : format : 'short'}}
+                                      </div>
+
+                                    </div>
+                                  </div>
+
+                                  <div ng-show="showMessage" class="showMessage">
+                                    <div class="hideBtn">
+                                        <button type="button" name="button" ng-click="showMessage=false"><i class="fa fa-times-circle fa-2x" aria-hidden="true"></i></button>
+                                    </div>
+
+                                    <div class="message">
+                                      <b>{{FuturePendingMessage.from.firstName}}:</b> {{FuturePendingMessage.content}}
+                                      <div class="timeTxt">
+                                        {{FuturePendingMessage.sentTime | date: format : 'shortTime'}}
+                                      </div>
+                                    </div>
+
+                                    <hr>
+
+                                    <textarea class="form-control reply"name="name" rows="5" cols="40" placeholder="Reply here" ng-model="replyMsg"></textarea>
+                                    <div class="status">
+                                      <b>Status:</b> {{FuturePendingMessage.status}}
+                                    </div>
+
+                                    <button type="button" class="reply btn btn-primary" name="button" ng-click="reply(FuturePendingMessage.from._id, FuturePendingMessage.serviceRef._id)">Reply</button>
+                                    <button type="button" class="delete btn btn-danger" name="button" ng-click="deleteMessage(FuturePendingMessage._id)">Delete Message</button>
+                                    <button type="button" name="button" class="btn btn-success approve_decline" ng-click="editRequest('Approved', FuturePendingMessage._id)">Approve</button>
+                                    <button type="button" name="button" class="btn btn-warning approve_decline" ng-click="editRequest('Declined', FuturePendingMessage._id)">Decline</button>
+
+                                  </div>
+
+                                </div>
+                              </div>
+                              <div class="recivedMessages" ng-show="IAR">
+                                <h1>Immeadiate Approved Request</h1>
+                                <div  ng-repeat="ImmeadiateApprovedMessage in ImmeadiateApprovedMessages">
+                                  <div class="indvRequest messagePreview" ng-click="showAddress=true">
+                                    <img class="inboxPhoto" ng-src="{{ImmeadiateApprovedMessage.from.photos[0].value}}" alt="" /><br>
+                                    <div class="messagePreviewText" >
+                                      <div class="messagePreviewItem view-message">
+                                        {{ImmeadiateApprovedMessage.from.firstName}}
+                                      </div>
+
+                                      <div class="messagePreviewItem view-message">
+                                        {{ImmeadiateApprovedMessage.subject}}
+                                      </div>
+
+                                      <div class="messagePreviewItem view-message text-right">
+                                        {{ImmeadiateApprovedMessage.sentTime | date : format : 'short'}}
+                                      </div>
+
+                                    </div>
+                                  </div>
+                                  <div ng-show="showAddress">
+                                    {{ImmeadiateApprovedMessage.from.currentLocation}}
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="recivedMessages" ng-show="FAR">
+                                <h1>Upcoming Approved Request</h1>
+                                <div  ng-repeat="FutureApprovedMessage in FutureApprovedMessages">
+                                  <div class="indvRequest messagePreview" ng-click="showAddress=true">
+                                    <img class="inboxPhoto" ng-src="{{FutureApprovedMessage.from.photos[0].value}}" alt="" /><br>
+                                    <div class="messagePreviewText" >
+                                      <div class="messagePreviewItem view-message">
+                                        {{FutureApprovedMessage.from.firstName}}
+                                      </div>
+
+                                      <div class="messagePreviewItem view-message">
+                                        {{FutureApprovedMessage.subject}}
+                                      </div>
+
+                                      <div class="messagePreviewItem view-message text-right">
+                                        {{FutureApprovedMessage.sentTime | date : format : 'short'}}
+                                      </div>
+
+                                    </div>
+                                  </div>
+                                  <div ng-show="showAddress">
+                                    {{FutureApprovedMessage.from.currentLocation}}
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="recivedMessages" ng-show="SM">
+                                <h1>Sent Messages</h1>
+                                <div  ng-repeat="sentMessage in sentMessages">
+                                  <div class="indvRequest messagePreview" ng-click="showMessage=true">
+                                    <img class="inboxPhoto" ng-src="{{sentMessage.from.photos[0].value}}" alt="" /><br>
+                                    <div class="messagePreviewText" >
+                                      <div class="messagePreviewItem view-message">
+                                        {{sentMessage.to.firstName}}
+                                      </div>
+
+                                      <div class="messagePreviewItem view-message">
+                                        {{sentMessage.subject}}
+                                      </div>
+
+                                      <div class="messagePreviewItem view-message text-right">
+                                        {{sentMessage.sentTime | date : format : 'short'}}
+                                      </div>
+
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <!-- <tr class="unread">
+                                  <td class="inbox-small-cells">
+                                      <input type="checkbox" class="mail-checkbox">
+                                  </td>
+                                  <td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+                                  <td class="view-message  dont-show">PHPClass</td>
+                                  <td class="view-message ">Added a new class: Login Class Fast Site</td>
+                                  <td class="view-message  inbox-small-cells"><i class="fa fa-paperclip"></i></td>
+                                  <td class="view-message  text-right">9:27 AM</td>
+                              </tr> -->
+                          </tbody>
+                          </table>
+                      </div>
+                  </aside>
+              </div>
 </div>

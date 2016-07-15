@@ -29,14 +29,12 @@ angular.module("providerApp")
               $rootScope.currentUser =user.data;
               $scope.currentUser = user.data;
               $scope.user = user.data;
-              console.log("new user exist", $scope.currentUser);
               return ;
             });
       }
       $rootScope.currentUser = response.data;
       $scope.currentUser = response.data;
       $scope.user = response.data;
-      console.log("userExist", $scope.currentUser);
     })
   }
 
@@ -214,7 +212,13 @@ $scope.setLocation=(lat, lon)=>{
 // $scope.allServices= []
 function getServices() {
   return providerService.getServices().then( (response) => {
-    $scope.allServices = response.data;
+    $scope.allServicesTF = response.data;
+    $scope.allServices = []
+    for (var i = 0; i < response.data.length; i++) {
+      if(response.data[i].user.isActive){
+        $scope.allServices.push(response.data[i])
+      }
+    }
     // console.log(allServices);
     // for (var i = 0; i < allServices.length; i++) {
     //   var distanceBtwn= getDistance(allServices[i].user.currentLocation, $scope.currentUser.currentLocation)
@@ -252,6 +256,7 @@ $scope.writeMessage = (service) => {
   $('#composeMessage').modal('show');
   $scope.tempService= service;
 }
+
 
 
 

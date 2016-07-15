@@ -1,11 +1,13 @@
 <link rel="stylesheet" href="../../assets/css/userHome.css" media="screen" title="no title" charset="utf-8">
 <user-nav role="navigation"></user-nav>
 
-<div class="container">
+<div class="container-fluid">
   <!--This is the Profile Header Container-->
   <div class="profileRow row" id="firstProfileRow">
-
-    <div class="col-sm-5" id="fr_fc_profileText">
+    <div class="col-sm-3 col-xs-12" id="fr_sc_profilePhoto">
+      <img ng-src="{{currentUser.photos[0].value}}" id="fr_sc_facebookImg" />
+    </div>
+    <div class="col-sm-5 col-xs-12" id="fr_fc_profileText">
       <h2>{{currentUser.firstName}}</h2>
       <h2><small>Welcome back!</small></h2>
         <p>
@@ -13,138 +15,182 @@
         </p>
     </div>
 
-    <div class="col-sm-4" id="fr_sc_profilePhoto">
-      <img ng-src="{{currentUser.photos[0].value}}" id="fr_sc_facebookImg" />
-    </div>
-
-    <div class="col-sm-3" id="fr_tc_navBar">
+    <div class="col-sm-4 col-xs-12" id="fr_tc_navBar">
+      <div class="fr_tc_Btn" type="btn">
+        <i class="fa fa-search fa-5x" aria-hidden="true"></i><br>
+        <h5>Search for Provider</h5>
+      </div>
+      <div class="fr_tc_Btn" type="btn">
+        <i class="fa fa-envelope-o fa-5x" aria-hidden="true"></i>
+        <h5>Check your Messages</h5>
+      </div>
 
     </div>
 
   </div>
 
+  <div class="profileRow row-fluid">
+    <div class="col-md-12 col-xs-12" id="">
+      <h3>Active in Your Area</h3>
+    </div>
+  </div>
 
-  <!--This is the Second Row -->
-  <div class="profileRow row" id="secondProfileRow">
 
-    <div class="col-sm-5" id="sr_fc_searchANDmap">
+  <!--This is the second Row-->
+  <div class="profileRow row-fluid">
+    <div class="col-md-12 col-xs-12" id="secondProfileRow">
+      <div class="" id="sr_sc_ServicesAvail">
+
+            <div ng-repeat="service in allServices" class="sr_serviceRepeat item">
+              <div class="absolute">
+                <img class="tr_tc_img absolute" ng-src="{{service.user.photos[0].value}}" alt="" />
+                <div class="absolute">
+                  <div class="sr_serviceRepeat_textOnPhoto absolute" id="name">
+                    {{service.user.firstName}}
+                  </div>
+                  <div class="sr_serviceRepeat_textOnPhoto" id="serviceType">
+                    {{service.serviceType}}
+                  </div>
+                  <div class="sr_serviceRepeat_textOnPhoto" id="skillLevel">
+                    Lvl {{service.skillLevel}}
+                  </div>
+                </div>
+                <div class="absolute sr_serviceRepeat_desc ">
+                  <div ng-show="service.flatRate" class="cost">
+                    ${{service.flatRate.cost}} per {{service.flatRate.metric}}
+                  </div>
+                  <div ng-show="service.hrlyRate" class="cost">
+                    ${{service.hrlyRate.hrly}} minimum {{service.hrlyRate.minHrs}} hrs
+                  </div>
+                  <div class="specialties">
+                    <b>Specialties:</b>{{service.specialties}}
+                  </div>
+                  <div class="description">
+                    <b>Description:</b> {{service.description}}
+                  </div>
+                </div>
+                <div class="">
+                  <button type="button"  class="sendRequestButton" ng-click="writeMessage(service)">
+                    Send Request
+                  </button>
+                </div><br>
+              </div>
+            </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="profileRow row-fluid">
+    <div class="col-md-12 col-xs-12" id="">
+      <h3>Set Your Location</h3>
+    </div>
+  </div>
+
+  <!--This is the third Row -->
+  <!-- <div class="profileRow" id="thirdProfileRow">
+
+    <div class="" id="tr_fc_searchANDmap">
 
       <!-- map -->
-      <div class="row">
-          <div class="col-sm-12">
+      <div class="profileRow row-fluid">
+          <div class="col-md-5 col-xs-9">
+            <!--search-->
+            <div class="">
+              <div class=""id="tr_fc_search">
+                  <input id="tr_fc_search_input" type="text" ng-model="search" placeholder=" Address and City"/>
+
+                  <button class="btn tr_fc_search_buttons" type="button" ng-click="geoCode()" ng-disabled="search.length == 0" title="Set Location"><i class="fa fa-search" aria-hidden="true"></i></button>
+                  <button class="btn tr_fc_search_buttons" type="button" ng-click="gotoCurrentLocation()" ng-title="Find Current Location"><i class="fa fa-location-arrow" aria-hidden="true"></i>
+                  </button>
+              </div>
+            </div>
             <user-map style="height:350px;width:350px;margin:0"
                 center="loc"
                 markers="location"
-                id="sr_map"
+                id="tr_map"
                 >
             </user-map>
           </div>
-      </div>
-          <!--search-->
-      <div class="row">
-        <div class="col-sm-12"id="sr_fc_search">
-            <input id="sr_fc_search_input" type="text" ng-model="search" placeholder=" Address and City"/>
 
-            <button class="btn sr_fc_search_buttons" type="button" ng-click="geoCode()" ng-disabled="search.length == 0" title="Set Location"><i class="fa fa-search" aria-hidden="true"></i></button>
-            <button class="btn sr_fc_search_buttons" type="button" ng-click="gotoCurrentLocation()" ng-title="Find Current Location"><i class="fa fa-location-arrow" aria-hidden="true"></i>
-            </button>
-        </div>
-      </div>
+          <div class="col-md-2 col-xs-3" id="tr_sc_locations">
+            <!-- current location and recent locations -->
+            <div class="row">
 
-    </div>
+              <div class="tr_sc_locations_box text-center" id="tr_sc_locations_box_current">
+                <i class="fa fa-map-marker tr_sc_locations_icons text-center fa-2x block"></i>
+                <h5 class="text-center">Current Address:</h5>
+                <h6>
+                  {{address}}
+                </h6>
+              </div>
 
-    <div class="col-sm-2" id="sr_sc_locations">
-      <!-- current location and recent locations -->
-      <div class="row">
+              <div class="tr_sc_locations_box">
+                <i class="fa fa-map-o tr_sc_locations_icons fa-2x block"></i>
+                <h5 class="text-center">Recent Locations:</h5>
+                  <div class="btn btn-block tr_sc_locations_button"
+                      ng-repeat="location in locations"
+                      ng-click="gotoLocation(location.lat, location.lon)"
+                      ng-show="location.name">
+                      <i class="fa fa-map-pin"  aria-hidden="true"></i>
+                      {{location.name}}<br>
+                      {{location.formattedAddress}}
+                      <div class="btn btn-success  tr_sc_locations_button_saveLocation"
+                      ng-click="saveLocation(location)">Save this Location</div>
 
-        <div class="col-sm-12 sr_sc_locations_box text-center" id="sr_sc_locations_box_current">
-          <i class="fa fa-map-marker sr_sc_locations_icons text-center fa-2x block"></i>
-          <h5 class="text-center">Current Address:</h5>
-          <h6>
-            {{address}}
-          </h6>
-        </div>
+                      <!--Modal That Saves the Location-->
+                      <div class="modal fade" id="myModalLabel{{location.formattedAddress}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{{location.formattedAddress}}">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title" id="myModalLabel{{location.formattedAddress}}">Edit Location</h4>
+                            </div>
+                            <div class="modal-body">
 
-        <div class="col-sm-12 sr_sc_locations_box">
-          <i class="fa fa-map-o sr_sc_locations_icons fa-2x block"></i>
-          <h5 class="text-center">Recent Locations:</h5>
-            <div class="btn btn-block sr_sc_locations_button"
-                ng-repeat="location in locations"
-                ng-click="gotoLocation(location.lat, location.lon)"
-                ng-show="location.name">
-                <i class="fa fa-map-pin"  aria-hidden="true"></i>
-                {{location.name}}<br>
-                {{location.formattedAddress}}
-                <div class="btn btn-success  sr_sc_locations_button_saveLocation"
-                ng-click="saveLocation(location)">Save this Location</div>
-
-                <!--Modal That Saves the Location-->
-                <div class="modal fade" id="myModalLabel{{location.formattedAddress}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{{location.formattedAddress}}">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel{{location.formattedAddress}}">Edit Location</h4>
+                              <form>
+                                <fieldset class="form-group">
+                                  <label for="formGroupExampleInput">Location Name</label>
+                                  <input type="text"  ng-model="location.name" class="form-control" id="formGroupExampleInput"  required>
+                                </fieldset>
+                              </form>
+                              {{location.formattedAddress}}
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                              <button type="button" data-dismiss="modal" ng-click="saveLocation(location)" class="btn btn-primary">Submit Location</button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div class="modal-body">
 
-                        <form>
-                          <fieldset class="form-group">
-                            <label for="formGroupExampleInput">Location Name</label>
-                            <input type="text"  ng-model="location.name" class="form-control" id="formGroupExampleInput"  required>
-                          </fieldset>
-                        </form>
-                        {{location.formattedAddress}}
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="button" data-dismiss="modal" ng-click="saveLocation(location)" class="btn btn-primary">Submit Location</button>
-                      </div>
-                    </div>
                   </div>
-                </div>
+              </div>
+
+              <div class="tr_sc_locations_box" >
+                <i class="fa fa-map-signs tr_sc_locations_icons fa-2x block "></i>
+                <h5 class="text-center">Saved Locations:</h5>
+                <div class="btn btn-block tr_sc_locations_button"
+                ng-repeat="sl in currentUser.savedLocations"
+                ng-click="gotoLocation(sl.lat, sl.lon)"
+                ng-show="sl.name">
+                <i class="fa fa-map-pin"  aria-hidden="true"></i>
+                {{sl.name}}<br>
+                {{sl.formattedAddress}}
+                <button type="button" data-dismiss="modal" ng-click="setLocation(sl.lat, sl.lon)" class="btn btn-success  tr_sc_locations_button_saveLocation">Set as Location</button>
+              </div>
+              </div>
 
             </div>
-        </div>
-
-        <div class="col-sm-12 sr_sc_locations_box" >
-          <i class="fa fa-map-signs sr_sc_locations_icons fa-2x block "></i>
-          <h5 class="text-center">Saved Locations:</h5>
-          <div class="btn btn-block sr_sc_locations_button"
-          ng-repeat="sl in currentUser.savedLocations"
-          ng-click="gotoLocation(sl.lat, sl.lon)"
-          ng-show="sl.name">
-          <i class="fa fa-map-pin"  aria-hidden="true"></i>
-          {{sl.name}}<br>
-          {{sl.formattedAddress}}
-          <button type="button" data-dismiss="modal" ng-click="setLocation(sl.lat, sl.lon)" class="btn btn-success  sr_sc_locations_button_saveLocation">Set as Location</button>
-        </div>
-        </div>
-
+          </div>
       </div>
-    </div>
 
-    <div class="col-sm-5" id="sr_sc_ServicesAvail">
-      <div ng-repeat="service in allServices">
-        <img class="sr_tc_img" ng-src="{{service.user.photos[0].value}}" alt="" /><br>
-        {{service.user.firstName}}<br>
-        {{service.type}}<br>
-        {{service.skillLevel}}<br>
-        {{service.specialties}}<br>
-        {{service.description}}<br>
-        {{service.flatRate}}{{service.hrlyRate}}<br>
+    </div> <!--End of container-->
 
-        <!-- Button trigger modal -->
-        <div class="">
-          <button type="button" ng-click="writeMessage(service)">
-            Send Request
-          </button>
-        </div><br>
-      </div>
-    </div>
-  </div>
 
-</div> <!--End of the container-->
+
+
+
 
 
 

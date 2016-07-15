@@ -1,10 +1,55 @@
+.mainContainerProvider {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btnNewService {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+.firstRowProvider {
+  height: 75px;
+}
+.firstRowProvider div {
+  width: 24%;
+  display: inline-block;
+}
+
+.secondRowProvider {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 500px;
+}
+
+.live {
+  background-color: rgb(139, 140, 15);
+  border: none;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+
+}
+
+.inactive {
+  background-color: rgb(214, 68, 48);
+  border: none;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
 .userServices {
   text-align: center;
-  height: 300px;
-  width: 220px;
-  background-color: rgba(255, 255, 255, 0.34);
-  margin-right: 10px;
-  margin-top: 10px;
+  padding: 10px;
+  background-color: rgba(255,255,255);
+  height: 90%;
+  border: 2px solid rgba(107, 107, 107, 0.5);
+  border-bottom: none;
 }
 
 .userServices_content {
@@ -13,6 +58,7 @@
 
 .userServices_title {
   font-size: 20px;
+  font-weight: bold;
 }
 
 .userServices_text {
@@ -21,21 +67,31 @@
   line-height: normal;
 }
 
-.deleteServiceBtn {
-  margin-top: 10px;
+.relative {
+  height:10%;
+  display: relative;
+}
+
+.ServiceBtn {
   font-size: 12px;
-  background-color: red;
   height:20px;
-  width: 60px;
+  width: 100%;
   color: white;
   font-weight: bold;
   border: none;
-  border-radius: 10px;
 }
-
+#delete{
+  background-color: red;
+}
+#edit{
+  background-color: orange;
+}
 .servicesOfferedRepeat {
+  background-color: white;
   margin-top: 0;
   display: inline-block;
+  height: 312px;
+  width: 257px;
 }
 
 

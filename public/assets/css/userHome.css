@@ -6,24 +6,35 @@
   padding-left: 10px;
   padding-right: 10px;
 }
+
+.container {
+  width 80%;
+}
+
 .profileRow {
-  /*width:830px;
-  margin-left: auto;
-  margin-right: auto;*/
   width: 80%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
 }
 
+.row-fluid {
+  white-space: nowrap;
+}
+
 /*ALL THE ROWS ON THE PROFILE VIEW*/
+
 
 #firstProfileRow {
   margin-top: 30px;
   height: 275px;
 }
-
 #secondProfileRow {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height:400px;
+}
+#thirdProfileRow {
   height: 400px;
 }
 
@@ -36,38 +47,125 @@
 }
 
 #fr_sc_profilePhoto {
-  padding-left: 0;
-  padding-right: 0;
+  padding: 0;
+
 }
 
 #fr_sc_facebookImg {
   height:275px;
   width: 275px;
+  float: right;
 }
 
-#fr_tc_navBar {
-  background-color: rgba(255, 255, 255, .1);
-  height: inherit;
-  padding: 0;
+.fr_tc_Btn {
+  text-align: center;
+  margin-top: 20%;
+  margin-right: 10px;
+  background-color: rgba(255, 255, 255, 0.49);
+  height:120px;
+  width:120px;
+  border-radius: 100%;
+  display: inline-block;
 }
 
 
-/*SECOND ROW CONTENTS*/
+/*Second Row Contents*/
 
-/*SECOND ROW CONTENTS*/ /*FIRST COLUMN*/
+#sr_sc_ServicesAvail {
 
-#sr_fc_searchANDmap {
+}
+
+
+.sr_serviceRepeat {
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 320px;
+  width: 200px;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.sr_serviceRepeat_textOnPhoto {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: white;
+  mix-blend-mode: difference;
+}
+
+.sr_serviceRepeat_desc {
+  width: 100%;
+  height:100px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 200px;
+}
+  #name {
+    margin-left: 9px;
+    margin-top: 12px;
+    font-size: 2.5em;
+  }
+
+  #serviceType {
+    float: left;
+    font-size: 1.5em;
+  }
+
+  #skillLevel {
+    font-size: 1em;
+    float:right;
+    padding:0;
+    margin-left:0;
+  }
+
+  .cost {
+    background-color: rgba(255, 255, 255, 0.4);
+    font-weight:normal;
+    color: white;
+    mix-blend-mode: difference;
+    margin-top: -27px;
+    font-size: 1.3em;
+  }
+  .specialties {
+    font-size: 0.7em;
+    line-height: normal;
+    white-space: normal;
+  }
+
+  .description {
+    font-size: 0.7em;
+    line-height: normal;
+    white-space: normal;
+  }
+
+  .sendRequestButton {
+    position: relative;
+    margin-bottom: 0;
+    margin-top:300px;
+    width:100%;
+    background-color: rgb(120, 145, 59);
+    border: none;
+    color: white;
+
+  }
+
+/*third ROW CONTENTS*/
+
+/*third ROW CONTENTS*/ /*FIRST COLUMN*/
+
+#tr_fc_searchANDmap {
   padding: 0;
   background-color: rgba(255, 255, 255, 0);
   box-shadow:  22px 0px 124px -9px rgba(0,0,0,0.36);;
 }
 
-#sr_fc_search {
+#tr_fc_search {
   height: 34px;
   margin-bottom: 8px;
 }
 
-#sr_fc_search_input {
+#tr_fc_search_input {
   /*margin-left: 30px;*/
   width:74%;
   height: 34px;
@@ -75,23 +173,23 @@
   border-radius: 5px;
 }
 
-.sr_fc_search_buttons {
+.tr_fc_search_buttons {
   margin-left: 1px;
 }
 
-#sr_map {
+#tr_map {
   float: right;
 }
 
-/*SECOND ROW CONTENTS*/ /*SECOND COLUMN*/
+/*third ROW CONTENTS*/ /*third COLUMN*/
 
-#sr_sc_locations{
+#tr_sc_locations{
   margin-left:;
   height: inherit;
   color: white;
 }
 
-.sr_sc_locations_box {
+.tr_sc_locations_box {
   padding: 1px;
   background-color: rgba(255, 255, 255, 0.30);
   margin-bottom: 3px;
@@ -99,12 +197,12 @@
   overflow-y: scroll;
 }
 
-#sr_sc_locations_box_current {
+#tr_sc_locations_box_current {
   height: 100px;
 }
 
 
-.sr_sc_locations_icons {
+.tr_sc_locations_icons {
   color: white;
   text-align: center;
   margin-top: 4px;
@@ -114,7 +212,7 @@
   display: block;
 }
 
-.sr_sc_locations_button {
+.tr_sc_locations_button {
   margin: 0;
   padding: 0;
   white-space: normal;
@@ -122,7 +220,7 @@
   text-align: left;
   line-height: 11px;
 }
-.sr_sc_locations_button_saveLocation {
+.tr_sc_locations_button_saveLocation {
   display: block;
   height: 13px;
   width: 80px;
@@ -131,12 +229,12 @@
   margin-right: 1px;
 }
 
-/*SECOND ROW CONTENTS*/ /*THIRD COLUMN*/
-#sr_sc_ServicesAvail {
+/*third ROW CONTENTS*/ /*THIRD COLUMN*/
+#tr_sc_ServicesAvail {
   height: inherit;
 }
 
-.sr_tc_img {
+.tr_tc_img {
   height: 200px;
   width: 200px;
 }

@@ -7,7 +7,7 @@ const Messages = mongoose.Schema(
   , subject: {type: String}
   , sentTime: {type: Object}
   , content: {type: String}
-  , status: {type: String, default:"Unapproved"}
+  , status: {type: String, default:"Pending"}
   , read: {type: Boolean, default: false}
   , serviceRef: {
       type: mongoose.Schema.Types.ObjectId,

@@ -2,21 +2,28 @@
 
 <link rel="stylesheet" href="../../assets/css/providerHomeView.css" media="screen" title="no title" charset="utf-8">
 
-<div class="container">
-    <div class="row firstRowProvider">
-        <div class="col-sm-4" >
-          <i class="fa fa-envelope-o fa-4x" aria-hidden="true"></i>
+<div class="mainContainerProvider">
+    <div class="firstRowProvider">
+        <div class="" >
+
+          <!-- <i class="fa fa-envelope-o fa-4x" aria-hidden="true"></i> -->
         </div>
-        <div class="col-sm-4">
-          <div class="onoffswitch">
+        <div class="">
+          <button type="button" class="btn btn-primary btn-lg inactive" ng-show="currentUser.isActive" ng-click="changeIsActive(false)">
+            Go Inactive
+          </button>
+          <button type="button" class="btn btn-primary btn-lg live" ng-hide="currentUser.isActive" ng-click=changeIsActive(true)>
+            Go Live
+          </button>
+          <!-- <div class="onoffswitch">
             <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch">
             <label class="onoffswitch-label" for="myonoffswitch">
                 <span class="onoffswitch-inner"></span>
                 <span class="onoffswitch-switch"></span>
             </label>
-          </div>
+          </div> -->
         </div>
-        <div class="col-sm-2">
+        <div class="">
           <!-- Button trigger modal -->
           <div class="addNewService">
             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
@@ -24,156 +31,12 @@
             </button>
           </div>
 
-          <!-- Form to Add a new Service to the PRViders -->
-          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">Add New Service You Can PRVide</h4>
-                </div>
-                <div class="modal-body">
-
-                  <form>
-                    <fieldset class="form-group">
-                      <label for="formGroupExampleInput">Service Type</label><br>
-                      <select name="serviceType" ng-model="serviceType">
-                        <option value="mover">Mover</option>
-                        <option value="painter">Painter</option>
-                        <option value="handyMan">Handy Man</option>
-                        <option value="houseCleaning">House Cleaning</option>
-                        <option value="lawnService">Lawn Service</option>
-                        <option value="errandRunner">Errand Runner</option>
-                        <option value="laundryService">Laundry Service</option>
-                        <option value="chefService">Chef Service</option>
-                        <option value="dogWalker">Dog Walker</option>
-                        <option value="dogGroomer">Mobile Dog Grooming</option>
-                        <option value="poolService">Pool Service</option>
-                        <option value="carpetCleaner">Carpet Cleaning Service</option>
-                        <option value="barTending">Bartender</option>
-                      </select>
-                    </fieldset>
-                    <fieldset class="form-group">
-                        <label for="exampleTextarea">Skill Level:</label>
-                        <div class="radio">
-                          <label>
-                            <input type="radio" ng-model="skillLevel" name="optionsRadios" id="optionsRadios1" value="1" checked>
-                            Level 1- Basic Skills
-                          </label>
-                        </div>
-                        <div class="radio">
-                          <label>
-                            <input type="radio" ng-model="skillLevel" name="optionsRadios" id="optionsRadios2" value="2">
-                            Level 2- Intermediate Skills
-                          </label>
-                        </div>
-                        <div class="radio">
-                          <label>
-                            <input type="radio" ng-model="skillLevel" name="optionsRadios" id="optionsRadios2" value="3">
-                            Level 3- Intermediate Skills with previous experience
-                          </label>
-                        </div>
-                        <div class="radio">
-                          <label>
-                            <input type="radio" ng-model="skillLevel" name="optionsRadios" id="optionsRadios2" value="4">
-                            Level 4- Advanced Skills
-                          </label>
-                        </div>
-                        <div class="radio">
-                          <label>
-                            <input type="radio" ng-model="skillLevel" name="optionsRadios" id="optionsRadios2" value="5">
-                            Level 5- Reserved for Professional Skill Experience
-                          </label>
-                        </div>
-                        <div class="radio disabled">
-                          <label>
-                            <input type="radio"  ng-model="skillLevel" name="optionsRadios" id="optionsRadios3" value="6" disabled>
-                            Level 6- Must be verified- Mastery
-                          </label>
-                        </div>
-                    </fieldset>
-                    <fieldset class="form-group">
-                      <label for="formGroupExampleInput">Specialties</label>
-                      <input ng-model="specialties" class="form-control" id="formGroupExampleInput" placeholder="Add areas of specialty. Ex: Painter- Dry Brush Technique" required>
-                    </fieldset>
-                    <fieldset class="form-group">
-                      <label for="formGroupExampleInput">Description</label>
-                      <textarea class="form-control" rows="3" ng-model="description" id="formGroupExampleInput" placeholder="Detail what you PRVide and bring to the table. Explain your skill level. What supplies you bring, what the customer will need to know." required></textarea>
-                    </fieldset>
-                    <fieldset class="form-group">
-                      <label for="formGroupExampleInput">Distance will Travel:</label>
-                      <input type="Number" ng-model="miles" class="form-control" id="formGroupExampleInput" placeholder="Ex: 10" required>
-                    </fieldset>
-                    <fieldset class="form-group">
-                      <label for="exampleTextarea">How do you charge?</label>
-                      <div class="radio">
-                        <label>
-                          <input type="radio" ng-model="flatRate" name="optionsRadios" id="optionsRadios1" value="true" checked>
-                          Flat Rate- I charge by a metric (Ex: $2 per square foot)
-                        </label>
-                      </div>
-                      <div class="radio">
-                        <label>
-                          <input type="radio" ng-model="hrlyRate" name="optionsRadios" id="optionsRadios2" value="true">
-                          Hourly Rate- I charge by the hour, with minimum hrs.
-                        </label>
-                      </div>
-                    </fieldset>
-
-                    <!--If Flat Rate is Chosen This Form Will Show-->
-                    <div ng-show="flatRate">
-                      <fieldset class="form-group">
-                          <div class="input-group">
-                            <label class="control-label">Amount:</label>
-                            <div class="input-group">
-                              <div class="input-group-addon">$</div>
-                              <input type="Number" class="form-control" id="exampleInputAmount" placeholder="Amount" ng-model="cost">
-                            </div>
-                          </div>
-                          <div class="input-group">
-                            <label class="control-label">Metric:</label>
-                            <div class="input-group">
-                              <input type="" class="form-control" id="exampleInputAmount" placeholder="Ex: Sq Foot" ng-model="metric">
-                            </div>
-                          </div>
-                      </fieldset>
-                    </div>
-                    <!--If Hourly Rate is Chosen This Form Will Show-->
-                    <div ng-show="hrlyRate">
-                      <fieldset class="form-group">
-                          <div class="input-group">
-                            <label class="control-label">Rate Hourly:</label>
-                            <div class="input-group">
-                              <div class="input-group-addon">$</div>
-                              <input type="Number" class="form-control" id="exampleInputAmount" placeholder="Amount" ng-model="hrly">
-                            </div>
-                          </div>
-                          <div class="input-group">
-                            <label class="control-label">Minimum Hours Charged:</label>
-                            <div class="input-group">
-                              <input type="Number" class="form-control" id="exampleInputAmount" placeholder="Ex: 2" ng-model="minHrs">
-                            </div>
-                          </div>
-                      </fieldset>
-                    </div>
-                  </form>
-
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                  <button type="button" data-dismiss="modal" ng-click="submitNewService()" class="btn btn-primary">Submit Service</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
-        <div class="col-sm-2">
-          hi
+        <div class="">
+
         </div>
     </div>
-    <div class="row secondRowProvider">
-        <div class="col-sm-12">
+    <div class="secondRowProvider">
           <div ng-repeat="service in userServices" class="servicesOfferedRepeat">
             <div class="userServices">
               <div class="userServices_content">
@@ -196,16 +59,307 @@
                   <b>Specialties:</b> {{service.specialties}}<br>
                   <b>Description:</b> {{service.description}}<br>
                 </div>
-                <button type="button" name="button" class="deleteServiceBtn" ng-click="deleteService(service._id)">Delete</button>
               </div>
-
+            </div>
+            <div class="relative">
+              <button type="button" name="button" class="ServiceBtn" id="delete" ng-click="deleteService(service._id)">Delete</button>
+                <button type="button" name="button" class="ServiceBtn" id="edit" ng-click="openEditServiceModal(service)">Edit</button>
             </div>
           </div>
-        </div>
     </div>
     <div class="row thirdRowProvider">
         <div class="col-sm-4"></div>
         <div class="col-sm-4"></div>
         <div class="col-sm-4"></div>
     </div>
+</div>
+
+
+<!-- Form to Add a new Service to the PRViders -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add New Service You Can PRVide</h4>
+      </div>
+      <div class="modal-body">
+
+        <form>
+          <fieldset class="form-group">
+            <label for="formGroupExampleInput">Service Type</label><br>
+            <select name="serviceType" ng-model="tempNewService.serviceType">
+              <option value="mover">Mover</option>
+              <option value="painter">Painter</option>
+              <option value="handyMan">Handy Man</option>
+              <option value="houseCleaning">House Cleaning</option>
+              <option value="lawnService">Lawn Service</option>
+              <option value="errandRunner">Errand Runner</option>
+              <option value="laundryService">Laundry Service</option>
+              <option value="chefService">Chef Service</option>
+              <option value="dogWalker">Dog Walker</option>
+              <option value="dogGroomer">Mobile Dog Grooming</option>
+              <option value="poolService">Pool Service</option>
+              <option value="carpetCleaner">Carpet Cleaning Service</option>
+              <option value="barTending">Bartender</option>
+            </select>
+          </fieldset>
+          <fieldset class="form-group">
+              <label for="exampleTextarea">Skill Level:</label>
+              <div class="radio">
+                <label>
+                  <input type="radio" ng-model="tempNewService.skillLevel" name="optionsRadios" id="optionsRadios1" value="1" checked>
+                  Level 1- Basic Skills
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" ng-model="tempNewService.skillLevel" name="optionsRadios" id="optionsRadios2" value="2">
+                  Level 2- Intermediate Skills
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" ng-model="tempNewService.skillLevel" name="optionsRadios" id="optionsRadios2" value="3">
+                  Level 3- Intermediate Skills with previous experience
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" ng-model="tempNewService.skillLevel" name="optionsRadios" id="optionsRadios2" value="4">
+                  Level 4- Advanced Skills
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" ng-model="tempNewService.skillLevel" name="optionsRadios" id="optionsRadios2" value="5">
+                  Level 5- Reserved for Professional Skill Experience
+                </label>
+              </div>
+              <div class="radio disabled">
+                <label>
+                  <input type="radio"  ng-model="tempNewService.skillLevel" name="optionsRadios" id="optionsRadios3" value="6" disabled>
+                  Level 6- Must be verified- Mastery
+                </label>
+              </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="formGroupExampleInput">Specialties</label>
+            <input ng-model="tempNewService.specialties" class="form-control" id="formGroupExampleInput" placeholder="Add areas of specialty. Ex: Painter- Dry Brush Technique" required>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="formGroupExampleInput">Description</label>
+            <textarea class="form-control" rows="3" ng-model="tempNewService.description" id="formGroupExampleInput" placeholder="Detail what you PRVide and bring to the table. Explain your skill level. What supplies you bring, what the customer will need to know." required></textarea>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="formGroupExampleInput">Distance will Travel:</label>
+            <input type="Number" ng-model="tempNewService.miles" class="form-control" id="formGroupExampleInput" placeholder="Ex: 10" required>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="exampleTextarea">How do you charge?</label>
+            <div class="radio">
+              <label>
+                <input type="radio" ng-model="tempNewService.flatRate" ng-click="tempNewService.hrlyRate=false" name="optionsRadios" id="optionsRadios1" value="true" checked>
+                Flat Rate- I charge by a metric (Ex: $2 per square foot)
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" ng-model="tempNewService.hrlyRate"
+                ng-click="tempNewService.flatRate=false" name="optionsRadios" id="optionsRadios2" value="true">
+                Hourly Rate- I charge by the hour, with minimum hrs.
+              </label>
+            </div>
+          </fieldset>
+
+          <!--If Flat Rate is Chosen This Form Will Show-->
+          <div ng-show="tempNewService.flatRate">
+            <fieldset class="form-group">
+                <div class="input-group">
+                  <label class="control-label">Amount:</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">$</div>
+                    <input type="Number" class="form-control" id="exampleInputAmount" placeholder="Amount" ng-model="tempNewService.cost">
+                  </div>
+                </div>
+                <div class="input-group">
+                  <label class="control-label">Metric:</label>
+                  <div class="input-group">
+                    <input type="" class="form-control" id="exampleInputAmount" placeholder="Ex: Sq Foot" ng-model="tempNewService.metric">
+                  </div>
+                </div>
+            </fieldset>
+          </div>
+          <!--If Hourly Rate is Chosen This Form Will Show-->
+          <div ng-show="tempNewService.hrlyRate">
+            <fieldset class="form-group">
+                <div class="input-group">
+                  <label class="control-label">Rate Hourly:</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">$</div>
+                    <input type="Number" class="form-control" id="exampleInputAmount" placeholder="Amount" ng-model="tempNewService.hrly">
+                  </div>
+                </div>
+                <div class="input-group">
+                  <label class="control-label">Minimum Hours Charged:</label>
+                  <div class="input-group">
+                    <input type="Number" class="form-control" id="exampleInputAmount" placeholder="Ex: 2" ng-model="tempNewService.minHrs">
+                  </div>
+                </div>
+            </fieldset>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" data-dismiss="modal" ng-click="submitNewService()" class="btn btn-primary">Submit Service</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--form to edit the service-->
+<div class="modal fade" tabindex="-1" role="dialog" id="editService">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edit Your Service</h4>
+      </div>
+      <div class="modal-body">
+
+        <form>
+          <fieldset class="form-group">
+            <label for="formGroupExampleInput">Service Type</label><br>
+            <select name="serviceType" ng-model="edit.serviceType">
+              <option value="mover">Mover</option>
+              <option value="painter">Painter</option>
+              <option value="handyMan">Handy Man</option>
+              <option value="houseCleaning">House Cleaning</option>
+              <option value="lawnService">Lawn Service</option>
+              <option value="errandRunner">Errand Runner</option>
+              <option value="laundryService">Laundry Service</option>
+              <option value="chefService">Chef Service</option>
+              <option value="dogWalker">Dog Walker</option>
+              <option value="dogGroomer">Mobile Dog Grooming</option>
+              <option value="poolService">Pool Service</option>
+              <option value="carpetCleaner">Carpet Cleaning Service</option>
+              <option value="barTending">Bartender</option>
+            </select>
+          </fieldset>
+          <fieldset class="form-group">
+              <label for="exampleTextarea">Skill Level:</label>
+              <div class="radio">
+                <label>
+                  <input type="radio" ng-model="edit.skillLevel" name="optionsRadios" id="optionsRadios1" value="1" checked>
+                  Level 1- Basic Skills
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" ng-model="edit.skillLevel" name="optionsRadios" id="optionsRadios2" value="2">
+                  Level 2- Intermediate Skills
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" ng-model="edit.skillLevel" name="optionsRadios" id="optionsRadios2" value="3">
+                  Level 3- Intermediate Skills with previous experience
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" ng-model="edit.skillLevel" name="optionsRadios" id="optionsRadios2" value="4">
+                  Level 4- Advanced Skills
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" ng-model="edit.skillLevel" name="optionsRadios" id="optionsRadios2" value="5">
+                  Level 5- Reserved for Professional Skill Experience
+                </label>
+              </div>
+              <div class="radio disabled">
+                <label>
+                  <input type="radio"  ng-model="edit.skillLevel" name="optionsRadios" id="optionsRadios3" value="6" disabled>
+                  Level 6- Must be verified- Mastery
+                </label>
+              </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="formGroupExampleInput">Specialties</label>
+            <input ng-model="edit.specialties" class="form-control" id="formGroupExampleInput" placeholder="Add areas of specialty. Ex: Painter- Dry Brush Technique" required>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="formGroupExampleInput">Description</label>
+            <textarea class="form-control" rows="3" ng-model="edit.description" id="formGroupExampleInput" placeholder="Detail what you PRVide and bring to the table. Explain your skill level. What supplies you bring, what the customer will need to know." required></textarea>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="formGroupExampleInput">Distance will Travel:</label>
+            <input type="Number" ng-model="edit.travelDistance" class="form-control" id="formGroupExampleInput" placeholder="Ex: 10" required>
+          </fieldset>
+          <!-- <fieldset class="form-group">
+            <label for="exampleTextarea">How do you charge?</label> -->
+            <!-- <div class="radio">
+              <label>
+                <input type="radio" ng-model="edit.flatRate" ng-click="edit.hrlyRate=false" name="optionsRadios" id="optionsRadios1" value="true" checked>
+                Flat Rate- I charge by a metric (Ex: $2 per square foot)
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" ng-model="edit.hrlyRate"
+                ng-click="edit.flatRate=false" name="optionsRadios" id="optionsRadios2" value="true">
+                Hourly Rate- I charge by the hour, with minimum hrs.
+              </label>
+            </div> -->
+          <!-- </fieldset> -->
+
+          <!--If Flat Rate is Chosen This Form Will Show-->
+          <div ng-show="edit.flatRate">
+            <fieldset class="form-group">
+                <div class="input-group">
+                  <label class="control-label">Amount:</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">$</div>
+                    <input type="Number" class="form-control" id="exampleInputAmount" placeholder="Amount" ng-model="edit.flatRate.cost">
+                  </div>
+                </div>
+                <div class="input-group">
+                  <label class="control-label">Metric:</label>
+                  <div class="input-group">
+                    <input type="" class="form-control" id="exampleInputAmount" ng-model="edit.flatRate.metric">
+                  </div>
+                </div>
+            </fieldset>
+          </div>
+          <!--If Hourly Rate is Chosen This Form Will Show-->
+          <div ng-show="edit.hrlyRate">
+            <fieldset class="form-group">
+                <div class="input-group">
+                  <label class="control-label">Rate Hourly:</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">$</div>
+                    <input type="Number" class="form-control" id="exampleInputAmount" ng-model="edit.hrlyRate.hrly">
+                  </div>
+                </div>
+                <div class="input-group">
+                  <label class="control-label">Minimum Hours Charged:</label>
+                  <div class="input-group">
+                    <input type="Number" class="form-control" id="exampleInputAmount" ng-model="edit.hrlyRate.minHrs">
+                  </div>
+                </div>
+            </fieldset>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" data-dismiss="modal" ng-click="editService()" class="btn btn-primary">Submit Service</button>
+      </div>
+    </div>
+  </div>
 </div>
