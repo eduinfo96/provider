@@ -28,8 +28,8 @@ angular.module('providerApp', ['ui.router', 'ngCookies'])
 
 
 .constant('ref', {
-  // url: "http://harrypotterbookclub.xyz"  unblock when you want to host again
-  url: "http://localhost:3000"
+  url: "http://harrypotterbookclub.xyz"  //unblock when you want to host again
+  // url: "http://localhost:3000"
 })
 
 // formats a number as a latitude (e.g. 40.46... => "40°27'44"N")
