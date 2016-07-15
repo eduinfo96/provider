@@ -10,8 +10,8 @@ const FacebookConfig = require('./server/config/facebookConfig');
 const masterRoutes = require('./server/masterRoutes');
 
 const app = express();
-// const port = 80; uncomment when you want togo live again
-const port = 3000;
+const port = 80; uncomment when you want togo live again
+// const port = 3000;
 
 app.use( bodyParser.json() );
 app.use( express.static(`${__dirname}/public`));
